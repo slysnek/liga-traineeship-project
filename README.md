@@ -15,8 +15,8 @@ Webpack, Eslint, Prettier
 
 ```
 .
-├── .vscode                                    # конфигурация под vs-code
-├── dist                                       # папка для билда (появится после npm run build)
+├── .vscode                                  # конфигурация под vs-code
+├── dist                                     # папка для билда (появится после npm run build)
 ├── config
 │   ├── constants.js                           # константные пути к файлам и папкам
 │   ├── css.modules.config.js                   # конфигурация css modules
@@ -34,27 +34,29 @@ Webpack, Eslint, Prettier
 │   └── webpack.config.styles.js                # конфигурация обработчиков css
 ├── src
 |   ├── api                                    # папка для работы с сетью, создаются файлы под каждую сущность
-│   ├── app                                    # точка входа, компонент App
+│   ├── app                                    # основные компоненты с бизнес-логикой
+│       ├── taskList                             # например, папка taskList, в которой содержится компонент страницы списка задач
+│           ├── components                         # внутренние компоненты
+│           ├── integration                        # файлы для redux
+|           ├── TaskList.tsx                       # корневой файл компонента
+|           ├── TaskList.types.ts                  # типы для компонента, например интерфейс пропсов TaskListProps
 │   ├── components                             # папка для компонентов без бизнес-логики (dumb components)
-│   ├── constants                              # константы разбитые по файлам
+│   ├── constants                              # общие константы разбитые по файлам
 │   ├── mocks                                  # папка для всех моков
-│   ├── modules                                # Основные компоненты с бизнес-логикой
-│       ├── Task                                 # Например, модуль Task, в котором содержится компонент карточки задачи. В этой папке также должны лежать store, стили, внутренние компоненты(папка components), типы. В общем, все что относится к данному модулю
-│   ├── pages                                  # Страницы, которые подключаются в роутере
-│   ├── router                                 # сам роутер(по сути один файл)
-│   ├── types                                  # интерфейсы для бизнес логики
+│   ├── types                                  # интерфейсы для сущностей, например для Task
 │   ├── utils                                  # вспомогательные функции, также разбиваем по файлам. Например, delay.ts
 │   ├── index.html                             # корневой html
 │   ├── index.tsx                              # точка входа в приложение для webpack
+│   ├── App.tsx                                # точка входа в приложение, роутер
 │   ├── react-app-env.d.ts                     # декларация модулей и переменных
-├── .browserlistsrc                            # список браузеров для autoprefixer
-├── .editorconfig                              # настройки для редакторов
-├── .eslintignore                              # игнорирование eslint
-├── .eslintrc                                  # Конфиг Eslint
-├── .gitignore                                 # Игнор файл для гита
-├── .prettierrc                                # Конфиг prettier
+├── .browserlistsrc                          # список браузеров для autoprefixer
+├── .editorconfig                             # настройки для редакторов
+├── .eslintignore                            # игнорирование eslint
+├── .eslintrc                                # Конфиг Eslint
+├── .gitignore                               # Игнор файл для гита
+├── .prettierrc                              # Конфиг prettier
 ├── package.json
-├── tsconfig.json                              # Конфиг тайпскрипта
+├── tsconfig.json                             # Конфиг тайпскрипта
 └── README.md
 ```
 

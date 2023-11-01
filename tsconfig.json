@@ -42,8 +42,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "__mocks__/*": [
-        "src/__mocks__/*"
+      "mocks/*": [
+        "src/mocks/*"
       ],
       "app/*": [
         "src/app/*"
@@ -54,26 +54,20 @@
       "constants/*": [
         "src/constants/*"
       ],
-      "router/*": [
-        "src/router/*"
-      ],
       "components/*": [
         "src/components/*"
       ],
-      "domains/*": [
-        "src/domains/*"
+      "types/*": [
+        "src/types/*"
       ],
-      "helpers/*": [
-        "src/helpers/*"
-      ],
-      "modules/*": [
-        "src/modules/*"
+      "utils/*": [
+        "src/utils/*"
       ],
       "pages/*": [
         "src/pages/*"
       ],
-      "http/*": [
-        "src/http/*"
+      "api/*": [
+        "src/api/*"
       ]
     }
   },
