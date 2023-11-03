@@ -1,0 +1,10 @@
+.tasklist{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.tasklist li{
+  list-style-type: none;
+}
