@@ -7,35 +7,34 @@ const TaskList = () => {
     {
       name: 'Test name',
       info: 'Test info bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
-      isCompleted: 'false',
+      isCompleted: false,
       id: 1,
     },
     {
       name: 'Test name 2 ',
       info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, vel. Illo qui omnis, asperiores ab neque, impedit necessitatibus esse eligendi exercitationem totam aliquid id maiores, quasi cum veniam sunt eius!',
-      isCompleted: 'true',
+      isCompleted: true,
       id: 2,
     },
     {
       name: 'Test name 3 ',
       info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, vel. Illo qui omnis, asperiores ab neque, impedit necessitatibus esse eligendi exercitationem totam aliquid id maiores, quasi cum veniam sunt eius!',
-      isCompleted: 'true',
+      isCompleted: true,
       id: 3,
     },
     {
       name: 'Test name 4 ',
       info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, vel. Illo qui omnis, asperiores ab neque, impedit necessitatibus esse eligendi exercitationem totam aliquid id maiores, quasi cum veniam sunt eius!',
-      isCompleted: 'true',
+      isCompleted: false,
       id: 4,
     },
   ]);
 
   return (
     <>
-      <h2>TaskList</h2>
       <ul className={styles.tasklist}>
         {tasksData.map((task) => {
-          return <Task key={task.id} taskData={task} />;
+          return <Task key={task.id} {...task} />;
         })}
       </ul>
     </>

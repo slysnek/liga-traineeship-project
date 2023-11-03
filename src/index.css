@@ -2,9 +2,17 @@
   --bg-color: #D1E8E2;
   --bg-color2: #19747E;
   --bg-color3: #A9D6E5;
-  --bg-color4: #E2E2E2;
+  --font-color: rgb(226, 226, 226);
+  --font-color2: rgb(33, 37, 41);
 }
 
-#root{
-  background-color: var(--bg-color);
+body{
+  background-color: var(--bg-color3);
+  height: 100vh;
 }
+
+a {
+  text-decoration: none;
+  color: var(--font-color2);
+}
+

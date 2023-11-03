@@ -1,9 +1,10 @@
 import styles from './Form.module.css';
+import { FormButton } from './Form.types';
 
-const Form = ({ type }: any) => {
+const Form: React.FC<{ type: FormButton }> = ({ type }) => {
   return (
     <>
-      <form action="">
+      <form className={styles.form} action="">
         <input required placeholder="Task name" type="text" />
         <input required placeholder="Task info" type="text" />
         <label>

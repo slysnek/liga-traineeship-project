@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './ShowTasks.module.css';
 import TaskList from 'app/TaskList/TaskList';
-import AddTask from 'pages/AddTask/AddTask';
 
 const ShowTasks = () => {
   return (
