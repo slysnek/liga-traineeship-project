@@ -1,7 +1,10 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { WrappedApp } from './app/App';
 
-const container = document.getElementById('root');
-const root = createRoot(container as HTMLElement);
-
-root.render(<h1>todo app</h1>);
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <WrappedApp />
+  </React.StrictMode>
+);
