@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import styles from './ShowTasks.module.css';
 import TaskList from 'app/TaskList/TaskList';
+import TitleLink from 'components/TitleLink/TitleLink';
 
 const ShowTasks = () => {
   return (
     <>
-      <Link to={'/add_task'}>Add task</Link>
+      <TitleLink link="add_task" buttonName="Add new task"></TitleLink>
       <TaskList />
     </>
   );
