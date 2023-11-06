@@ -6,9 +6,9 @@ const Form: React.FC<{ type: FormButton }> = ({ type }) => {
     <>
       <form className={styles.form} action="">
         <input required placeholder="Task name" type="text" />
-        <input required placeholder="Task info" type="text" />
+        <textarea required placeholder="Task info" name="" id="" cols={30} rows={5}></textarea>
         <label>
-          Is task completed?
+          Is task completed?&nbsp;
           <input type="checkbox" />
         </label>
         <button type="submit">{type}</button>
