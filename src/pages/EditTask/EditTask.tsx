@@ -7,7 +7,6 @@ const EditTask = () => {
   return (
     <>
       <Link to={'/'}>Back to main page</Link>
-      <h2>EditTask page</h2>
       <Form type={'Edit task' as FormButton}></Form>
     </>
   );
