@@ -1,16 +1,17 @@
 @import '../../index.css';
 
 .task{
+  position: relative;
   min-width: 250px;
   width: 350px;
   max-height: 350px;
   overflow-y: scroll;
-  border: 1px solid black;
+  border: 1px solid var(--font-color2);
   border-radius: 16px;
-  padding: 16px;
+  padding: 24px;
   background-color: var(--bg-color2);
   color: var(--font-color);
-  box-shadow: 0px 4px 8px black;
+  box-shadow: 0px 4px 8px var(--font-color2);
 }
 
 .task:hover{
@@ -39,7 +40,33 @@
   background: #555;
 }
 
+.name{
+  text-align: center;
+  border-bottom: 2px solid var(--font-color);
+}
+
 .edit{
-  font-size: 1.1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 6px;
+  padding-top: 10px;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  vertical-align: text-bottom;
+}
+
+.icon:hover{
+  transform: scale(1.1);
+}
+
+.inputCheck{
+  font-size: 1.2rem;
+  width: 100%;
   font-weight: bold;
+  border-top: 2px dashed var(--font-color);
+  padding-top: 16px;
 }
