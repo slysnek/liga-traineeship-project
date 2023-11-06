@@ -24,7 +24,7 @@ const TaskList = () => {
     },
     {
       name: 'Test name 4 ',
-      info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, vel. Illo qui omnis, asperiores ab neque, impedit necessitatibus esse eligendi exercitationem totam aliquid id maiores, quasi cum veniam sunt eius!',
+      info: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum, nam beatae? Eligendi ex assumenda autem repellendus voluptatem neque beatae a fugit fugiat? Magnam ad ratione labore accusamus fuga delectus, explicabo in, quasi quam placeat laboriosam neque vel! Explicabo harum ullam doloremque officia? Debitis nihil exercitationem veritatis nesciunt, perspiciatis praesentium nulla sunt cum? Maiores debitis et, corrupti facilis voluptas pariatur veniam perferendis similique error sit tenetur illum eum rem labore sed quod id eaque aut repudiandae veritatis cum necessitatibus rerum eos magnam. Illo quod nemo quidem consectetur hic? Esse provident repellat officia sequi aperiam debitis voluptate officiis, quae, impedit libero aliquid.',
       isCompleted: false,
       id: 4,
     },
