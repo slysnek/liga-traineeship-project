@@ -1,13 +1,12 @@
 :root{
-  --bg-color: #D1E8E2;
+  --bg-color: #A9D6E5;
   --bg-color2: #19747E;
-  --bg-color3: #A9D6E5;
   --font-color: rgb(226, 226, 226);
   --font-color2: rgb(33, 37, 41);
 }
 
 body{
-  background-color: var(--bg-color3);
+  background-color: var(--bg-color);
   height: 100vh;
 }
 
