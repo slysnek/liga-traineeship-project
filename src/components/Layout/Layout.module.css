@@ -1,0 +1,14 @@
+@import '../../index.css';
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    background-color: var(--bg-color2);
+}
+
+.logo{
+    color: var(--font-color);
+}

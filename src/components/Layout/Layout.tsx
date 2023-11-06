@@ -1,5 +1,5 @@
 import { Link, Outlet, useSearchParams, useNavigate } from 'react-router-dom';
-
+import styles from './Layout.module.css';
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -12,9 +12,9 @@ const Layout = () => {
 
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <Link onClick={handleGoHome} to="/">
-          go home
+          <h1 className={styles.logo}>TODO APP</h1>
         </Link>
       </header>
       <main>
