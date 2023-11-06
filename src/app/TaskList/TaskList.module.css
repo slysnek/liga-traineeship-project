@@ -1,12 +1,17 @@
 .tasklist{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-items: center;
+  gap: 24px;
   padding: 16px;
 }
 
 .tasklist li{
   list-style-type: none;
+}
+
+@media screen and (max-width: 768px) {
+  .tasklist{
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
