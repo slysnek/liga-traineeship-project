@@ -1,13 +1,24 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Form.module.css';
 import { IForm } from './Form.types';
 import { addTask, editTask } from 'src/store/tasksSlice';
+import { RootState } from 'src/store/store';
 
 const Form: React.FC<IForm> = ({ type, taskId }) => {
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
+
+  const taskToEdit = useSelector((state: RootState) => state.tasksInStore.tasks.find((task) => task.id === taskId));
+
+  useEffect(() => {
+    if (taskToEdit) {
+      setInfo(taskToEdit.info);
+      setName(taskToEdit.name);
+      setIsCompleted(taskToEdit.isCompleted);
+    }
+  }, []);
 
   const dispatch = useDispatch();
 
