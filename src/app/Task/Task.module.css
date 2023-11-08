@@ -48,17 +48,21 @@
 }
 
 .edit{
+  display: flex;
+  flex-direction: row;
   position: absolute;
   top: 0;
   right: 0;
-  padding-right: 6px;
-  padding-top: 10px;
+  gap: 4px;
+  padding-right: 4px;
+  padding-top: 8px;
 }
 
 .icon {
   width: 22px;
   height: 22px;
   vertical-align: text-bottom;
+  cursor: pointer;
 }
 
 .icon:hover{

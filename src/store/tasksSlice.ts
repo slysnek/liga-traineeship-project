@@ -17,9 +17,12 @@ const tasksSlice = createSlice({
       });
       state.idCounter = state.idCounter++;
     },
+    deleteTask(state, action) {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
+    },
   },
 });
 
-export const { addTask } = tasksSlice.actions;
+export const { addTask, deleteTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
