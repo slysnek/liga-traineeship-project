@@ -18,7 +18,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
       setName(taskToEdit.name);
       setIsCompleted(taskToEdit.isCompleted);
     }
-  }, []);
+  }, [taskToEdit]);
 
   const dispatch = useDispatch();
 
