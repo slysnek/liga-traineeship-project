@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { logger } from 'redux-logger';
 import tasksSlice from './tasksSlice';
 
 export const store = configureStore({
@@ -8,7 +9,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleWare) =>
     getDefaultMiddleWare({
       serializableCheck: false,
-    }),
+    }).concat(logger),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
