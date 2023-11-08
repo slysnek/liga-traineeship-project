@@ -10,12 +10,12 @@ const tasksSlice = createSlice({
   reducers: {
     addTask(state, action) {
       state.tasks.push({
-        id: state.idCounter,
         name: action.payload.name,
         info: action.payload.info,
         isCompleted: action.payload.isCompleted,
+        id: state.idCounter,
       });
-      state.idCounter = state.idCounter++;
+      state.idCounter += 1;
     },
     deleteTask(state, action) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
