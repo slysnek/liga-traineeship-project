@@ -1,4 +1,4 @@
-import { Link, Outlet, useSearchParams, useNavigate } from 'react-router-dom';
+import { Outlet, useSearchParams, useNavigate, NavLink } from 'react-router-dom';
 import styles from './Layout.module.css';
 const Layout = () => {
   const navigate = useNavigate();
@@ -13,9 +13,9 @@ const Layout = () => {
   return (
     <>
       <header className={styles.header}>
-        <Link onClick={handleGoHome} to="/">
+        <NavLink onClick={handleGoHome} to="/">
           <h1 className={styles.logo}>TODO APP</h1>
-        </Link>
+        </NavLink>
       </header>
       <main>
         <Outlet />

@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './Form.module.css';
-import { FormButton } from './Form.types';
-import { addTask } from 'src/store/tasksSlice';
+import { IForm } from './Form.types';
+import { addTask, editTask } from 'src/store/tasksSlice';
 
-const Form: React.FC<{ type: FormButton }> = ({ type }) => {
+const Form: React.FC<IForm> = ({ type, taskId }) => {
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (type === 'Add task') {
       dispatch(addTask({ name: name, info: info, isCompleted: isCompleted }));
+    }
+    if (type === 'Edit task') {
+      dispatch(editTask({ name: name, info: info, isCompleted: isCompleted, id: taskId }));
     }
     setInfo('');
     setName('');

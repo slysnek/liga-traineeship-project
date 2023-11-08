@@ -17,12 +17,18 @@ const tasksSlice = createSlice({
       });
       state.idCounter += 1;
     },
+    editTask(state, action) {
+      const taskID = state.tasks.findIndex((task) => task.id === action.payload.id);
+      state.tasks[taskID].name = action.payload.name;
+      state.tasks[taskID].info = action.payload.info;
+      state.tasks[taskID].isCompleted = action.payload.isCompleted;
+    },
     deleteTask(state, action) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
     },
   },
 });
 
-export const { addTask, deleteTask } = tasksSlice.actions;
+export const { addTask, deleteTask, editTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
