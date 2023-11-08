@@ -5,7 +5,6 @@ import checkmarkIcon from '../../assets/icons/icon-checkmark.svg';
 import styles from './Task.module.css';
 import { ITaskType } from './Task.types';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
   return (
     <li className={styles.task}>
