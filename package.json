@@ -15,7 +15,8 @@
     "lint:styles": "stylelint ./src/**/*.css",
     "fix:styles": "stylelint --fix ./src/**/*.css",
     "lint:ts": "eslint src/**/*.{ts,tsx}",
-    "fix:ts": "eslint src/**/*.{ts,tsx} --quiet --fix"
+    "fix:ts": "eslint src/**/*.{ts,tsx} --quiet --fix",
+    "swagger-ts": "npx openapi-typescript http://37.220.80.108/swagger.json -o src/types/apiTypes.ts"
   },
   "author": "",
   "license": "ISC",
@@ -60,6 +61,7 @@
     "lint-staged": "13.0.1",
     "loader-utils": "3.2.0",
     "mini-css-extract-plugin": "2.6.0",
+    "openapi-typescript": "^6.7.1",
     "postcss-combine-media-query": "1.0.1",
     "postcss-discard-duplicates": "5.1.0",
     "postcss-flexbugs-fixes": "5.0.2",
