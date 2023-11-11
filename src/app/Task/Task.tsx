@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import pencilIcon from '../../assets/icons/icon-pencil.svg';
 import crossIcon from '../../assets/icons/icon-cross.svg';
 import checkmarkIcon from '../../assets/icons/icon-checkmark.svg';
 import deleteIcon from '../../assets/icons/icon-delete.svg';
 import styles from './Task.module.css';
 import { ITaskType } from './Task.types';
-import { deleteTask } from 'src/store/tasksSlice';
+import { removeTask } from 'src/store/tasksSlice';
+import { useAppDispatch } from 'src/hooks/hooks';
 
 const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     const idTodelete = taskData.id;
-    dispatch(deleteTask({ id: idTodelete }));
+    dispatch(removeTask(idTodelete as number));
   };
 
   return (

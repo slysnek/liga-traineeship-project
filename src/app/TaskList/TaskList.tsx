@@ -1,10 +1,16 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import styles from './TaskList.module.css';
 import Task from 'app/Task/Task';
-import { RootState } from 'src/store/store';
+import { getTasks } from 'src/store/tasksSlice';
+import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 
 const TaskList = () => {
-  const tasks = useSelector((state: RootState) => state.tasksInStore.tasks);
+  const tasks = useAppSelector((state) => state.tasksInStore.tasks);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getTasks());
+  }, [dispatch]);
 
   return (
     <>
