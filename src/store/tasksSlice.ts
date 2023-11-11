@@ -104,7 +104,7 @@ const tasksSlice = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
     },
-    [String(removeTask.rejected)]: (state, action) => {
+    [String(removeTask.rejected)]: (state, action: PayloadAction<string>) => {
       state.status = 'rejected';
       state.error = action.payload;
     },
