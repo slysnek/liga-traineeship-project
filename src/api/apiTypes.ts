@@ -1,13 +1,13 @@
 import { paths } from '../types/apiTypes';
 
-export type AddTaskForm = {
+export type AddTaskQuery = {
   name?: string;
   info?: string;
-  isCompleted?: string;
-  isImportant?: string;
+  isCompleted?: boolean;
+  isImportant?: boolean;
 };
-export type ChangeTaskForm = AddTaskForm & {
-  id?: string;
+export type ChangeTaskQuery = AddTaskQuery & {
+  id?: number;
 };
 export type IGetTasksResponse = paths['/tasks']['get']['responses']['200']['content']['application/json'];
 export type IPostTaskResponse = paths['/tasks']['post']['responses']['200']['content']['application/json'];

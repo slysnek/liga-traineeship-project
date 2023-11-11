@@ -1,37 +1,36 @@
 import axios, { AxiosResponse } from 'axios';
-import { AddTaskForm, ChangeTaskForm, IGetTasksResponse, IPatchTaskResponse, IPostTaskResponse } from './apiTypes';
+import { AddTaskQuery, ChangeTaskQuery, IGetTasksResponse, IPatchTaskResponse, IPostTaskResponse } from './apiTypes';
 
 export default class Fetcher {
   async getData(url: string): Promise<IGetTasksResponse> {
-    try {
-      const response: AxiosResponse<IGetTasksResponse> = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      throw new Error();
-    }
+    const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
+      timeout: 5000,
+    });
+    return response.data;
   }
 
-  async addData(url: string, formData: AddTaskForm): Promise<IPostTaskResponse> {
+  async addData(url: string, formData: AddTaskQuery): Promise<IPostTaskResponse> {
     try {
       const response: AxiosResponse<IPostTaskResponse> = await axios.post(url, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       return response.data;
     } catch (error) {
-      throw new Error();
+      throw new Error((error as Error).message);
     }
   }
 
-  async changeData(url: string, formData: ChangeTaskForm): Promise<IPatchTaskResponse> {
+  async changeData(url: string, formData: ChangeTaskQuery): Promise<IPatchTaskResponse> {
     try {
       const resource = `${url}/${formData.id}`;
       const response: AxiosResponse<IPatchTaskResponse> = await axios.patch(
         resource,
         {
+          name: formData.name,
           info: formData.info,
+          isCompleted: formData.isCompleted,
         },
         {
           headers: {
@@ -41,11 +40,11 @@ export default class Fetcher {
       );
       return response.data;
     } catch (error) {
-      throw new Error();
+      throw new Error((error as Error).message);
     }
   }
 
-  async deleteData(url: string, id: string): Promise<void> {
+  async deleteData(url: string, id: number): Promise<void> {
     try {
       const resource = `${url}/${id}`;
       const response: AxiosResponse<void> = await axios.delete(resource);
@@ -53,7 +52,7 @@ export default class Fetcher {
         throw new Error("Task doesn't exist");
       }
     } catch (error) {
-      throw new Error();
+      throw new Error((error as Error).message);
     }
   }
 }
