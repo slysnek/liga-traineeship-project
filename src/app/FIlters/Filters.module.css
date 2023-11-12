@@ -1,0 +1,9 @@
+@import '../../index.css';
+
+.filters-wrapper{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 32px;
+}
