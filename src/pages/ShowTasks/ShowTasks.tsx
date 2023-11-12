@@ -10,15 +10,15 @@ const ShowTasks = () => {
   return (
     <>
       <TitleLink link="add_task" buttonName="Add new task"></TitleLink>
+      <TaskList />
       <div className={styles.status}>
         {status === 'loading' && (
-          <Loader variant="dot" isLoading={true}>
+          <Loader variant="circle" isLoading={true}>
             <h2>Loading</h2>
           </Loader>
         )}
         {error && <h2>An error occured: {error}</h2>}
       </div>
-      <TaskList />
     </>
   );
 };
