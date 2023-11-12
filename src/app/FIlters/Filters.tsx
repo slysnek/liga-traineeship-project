@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './Filters.module.css';
-import { IFilterProps } from 'app/Pagination/Filters.types';
+import { IFilterProps } from 'app/FIlters/Filters.types';
 import { ITaskType } from 'app/Task/Task.types';
 
 const Filters: React.FC<IFilterProps> = ({ tasks, onFilteredTasksChange }) => {
