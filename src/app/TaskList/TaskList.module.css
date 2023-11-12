@@ -12,6 +12,12 @@
   list-style-type: none;
 }
 
+.status{
+  margin: 1rem auto;
+  text-align: center;
+  color: #7e1919;
+}
+
 @media screen and (max-width: 400px) {
   .tasklist{
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
