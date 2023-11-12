@@ -20,8 +20,8 @@ export const getTasks = createAsyncThunk<IGetTasksResponse, void, { rejectValue:
   }
 );
 
-export const removeTask = createAsyncThunk<void, number, { rejectValue: string }>(
-  'tasksSlice/removeTask',
+export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: string }>(
+  'tasksSlice/removeTaskQuery',
   async function (id, { rejectWithValue, dispatch }) {
     try {
       await controller.deleteData(id);
@@ -34,8 +34,8 @@ export const removeTask = createAsyncThunk<void, number, { rejectValue: string }
   }
 );
 
-export const addNewTask = createAsyncThunk<IPostTaskResponse, IPostTaskResponse, { rejectValue: string }>(
-  'tasksSlice/addNewTask',
+export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, IPostTaskResponse, { rejectValue: string }>(
+  'tasksSlice/addNewTaskQuery',
   async function ({ name, info, isCompleted }, { rejectWithValue, dispatch }) {
     try {
       const taskResponse = await controller.addData({ name, info, isCompleted });
@@ -48,8 +48,8 @@ export const addNewTask = createAsyncThunk<IPostTaskResponse, IPostTaskResponse,
   }
 );
 
-export const changeTask = createAsyncThunk<IPatchTaskResponse, IPatchTaskResponse, { rejectValue: string }>(
-  'tasksSlice/changeTask',
+export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, IPatchTaskResponse, { rejectValue: string }>(
+  'tasksSlice/changeTaskQuery',
   async function ({ name, info, isCompleted, id }, { rejectWithValue, dispatch }) {
     try {
       const taskResponse = await controller.changeData({ name, info, isCompleted, id });
@@ -80,7 +80,7 @@ const tasksSlice = createSlice({
         isCompleted: action.payload.isCompleted,
       });
     },
-    editTask(state, action) {
+    editTask(state, action: PayloadAction<IPatchTaskResponse>) {
       const taskID = state.tasks.findIndex((task) => task.id === action.payload.id);
       state.tasks[taskID].name = action.payload.name;
       state.tasks[taskID].info = action.payload.info;
@@ -104,7 +104,7 @@ const tasksSlice = createSlice({
       state.status = 'rejected';
       state.error = action.payload;
     },
-    [String(removeTask.rejected)]: (state, action: PayloadAction<string>) => {
+    [String(removeTaskQuery.rejected)]: (state, action: PayloadAction<string>) => {
       state.status = 'rejected';
       state.error = action.payload;
     },

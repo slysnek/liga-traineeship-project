@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Form.module.css';
 import { IForm } from './Form.types';
-import { addNewTask, changeTask } from 'src/store/tasksSlice';
+import { addNewTaskQuery, changeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 
 const Form: React.FC<IForm> = ({ type, taskId }) => {
@@ -24,13 +24,13 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (type === 'Add task') {
-      dispatch(addNewTask({ name: name, info: info, isCompleted: isCompleted }));
+      dispatch(addNewTaskQuery({ name: name, info: info, isCompleted: isCompleted }));
       setInfo('');
       setName('');
       setIsCompleted(false);
     }
     if (type === 'Edit task') {
-      dispatch(changeTask({ name: name, info: info, isCompleted: isCompleted, id: taskId }));
+      dispatch(changeTaskQuery({ name: name, info: info, isCompleted: isCompleted, id: taskId }));
     }
   };
 

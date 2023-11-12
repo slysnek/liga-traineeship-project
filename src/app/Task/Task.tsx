@@ -5,7 +5,7 @@ import checkmarkIcon from '../../assets/icons/icon-checkmark.svg';
 import deleteIcon from '../../assets/icons/icon-delete.svg';
 import styles from './Task.module.css';
 import { ITaskType } from './Task.types';
-import { removeTask } from 'src/store/tasksSlice';
+import { removeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch } from 'src/hooks/hooks';
 
 const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
@@ -13,12 +13,12 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
 
   const handleDelete = () => {
     const idTodelete = taskData.id;
-    dispatch(removeTask(idTodelete as number));
+    dispatch(removeTaskQuery(idTodelete as number));
   };
 
   return (
     <li className={styles.task}>
-      <h3 className={styles.name}>{taskData.name}</h3>
+      <h3 className={styles.name}>{taskData.name ? taskData.name : 'Empty task name'}</h3>
       <div className={styles.edit}>
         <Link to={`add_task/${taskData.id}`}>
           <img className={styles.icon} src={pencilIcon} alt="pencil icon" />
