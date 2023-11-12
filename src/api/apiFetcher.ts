@@ -1,10 +1,25 @@
 import axios, { AxiosResponse } from 'axios';
-import { AddTaskQuery, ChangeTaskQuery, IGetTasksResponse, IPatchTaskResponse, IPostTaskResponse } from './apiTypes';
+import {
+  AddTaskQuery,
+  ChangeTaskQuery,
+  GetFilteredTasksQuery,
+  IGetTasksResponse,
+  IPatchTaskResponse,
+  IPostTaskResponse,
+} from './apiTypes';
 
 export default class Fetcher {
   async getData(url: string): Promise<IGetTasksResponse> {
     const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
       timeout: 5000,
+    });
+    return response.data;
+  }
+
+  async getFilteredData(url: string, filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+    const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
+      timeout: 5000,
+      params: filters,
     });
     return response.data;
   }

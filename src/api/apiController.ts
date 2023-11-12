@@ -1,5 +1,12 @@
 import Fetcher from './apiFetcher';
-import { AddTaskQuery, ChangeTaskQuery, IGetTasksResponse, IPatchTaskResponse, IPostTaskResponse } from './apiTypes';
+import {
+  AddTaskQuery,
+  ChangeTaskQuery,
+  GetFilteredTasksQuery,
+  IGetTasksResponse,
+  IPatchTaskResponse,
+  IPostTaskResponse,
+} from './apiTypes';
 
 export default class Controller {
   url: string;
@@ -13,6 +20,11 @@ export default class Controller {
   async getData(): Promise<IGetTasksResponse> {
     const response = await this.dataFetcher.getData(this.url);
     console.log('Getting data:');
+    return response;
+  }
+  async getFilteredData(filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+    const response = await this.dataFetcher.getFilteredData(this.url, filters);
+    console.log('Getting filtered data:');
     return response;
   }
   async addData(formData: AddTaskQuery): Promise<IPostTaskResponse> {
