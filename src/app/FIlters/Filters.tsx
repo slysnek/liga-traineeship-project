@@ -40,7 +40,7 @@ const Filters: React.FC = () => {
     <div className={styles['filters-wrapper']}>
       <button
         className={styles['filter-button']}
-        onClick={() => setFilters({ isImportant: undefined, isCompleted: undefined })}>
+        onClick={() => setFilters({ ...reduxFilters, isImportant: undefined, isCompleted: undefined })}>
         All
       </button>
       <button
