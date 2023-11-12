@@ -80,6 +80,11 @@ const initialState: TasksInitialState = {
   tasks: [],
   status: undefined,
   error: undefined,
+  filters: {
+    isImportant: undefined,
+    isCompleted: undefined,
+    name_like: undefined,
+  },
 };
 
 const tasksSlice = createSlice({
@@ -92,6 +97,19 @@ const tasksSlice = createSlice({
         info: action.payload.info,
         isCompleted: action.payload.isCompleted,
       });
+    },
+    searchTask(state, action: PayloadAction<string>) {
+      state.tasks = state.tasks.filter((task) => {
+        if (task.name) {
+          return task.name.toString().toLowerCase().includes(action.payload.toLowerCase());
+        }
+        if (task.info) {
+          return task.info.toString().toLowerCase().includes(action.payload.toLowerCase());
+        }
+      });
+    },
+    changeFilters(state, action: PayloadAction<GetFilteredTasksQuery>) {
+      state.filters = action.payload;
     },
     editTask(state, action: PayloadAction<IPatchTaskResponse>) {
       const taskID = state.tasks.findIndex((task) => task.id === action.payload.id);
@@ -137,6 +155,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { addTask, deleteTask, editTask } = tasksSlice.actions;
+export const { addTask, deleteTask, editTask, changeFilters, searchTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

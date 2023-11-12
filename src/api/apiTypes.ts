@@ -12,6 +12,7 @@ export type ChangeTaskQuery = AddTaskQuery & {
 export type GetFilteredTasksQuery = {
   isImportant?: boolean;
   isCompleted?: boolean;
+  name_like?: string;
 };
 export type IGetTasksResponse = paths['/tasks']['get']['responses']['200']['content']['application/json'];
 export type IPostTaskResponse = paths['/tasks']['post']['responses']['200']['content']['application/json'];
