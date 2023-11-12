@@ -3,7 +3,7 @@
 .task{
   position: relative;
   min-width: 250px;
-  width: 350px;
+  width: 360px;
   max-height: 350px;
   overflow-y: scroll;
   border: 1px solid var(--font-color2);
@@ -77,8 +77,8 @@
   padding-top: 16px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 400px) {
   .task{
-    width: auto;
+    width: 280px;
   }
 }

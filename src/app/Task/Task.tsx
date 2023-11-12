@@ -3,6 +3,7 @@ import pencilIcon from '../../assets/icons/icon-pencil.svg';
 import crossIcon from '../../assets/icons/icon-cross.svg';
 import checkmarkIcon from '../../assets/icons/icon-checkmark.svg';
 import deleteIcon from '../../assets/icons/icon-delete.svg';
+import importantIcon from '../../assets/icons/icon-important.svg';
 import styles from './Task.module.css';
 import { ITaskType } from './Task.types';
 import { removeTaskQuery } from 'src/store/tasksSlice';
@@ -38,6 +39,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
             <img className={styles.icon} src={crossIcon} alt="cross icon" />
           </>
         )}
+        {taskData.isImportant ? <img className={styles.icon} src={importantIcon} alt="important icon" /> : null}
       </label>
     </li>
   );
