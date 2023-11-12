@@ -22,6 +22,14 @@
   border: 1px solid var(--font-color2);
 }
 
+.red{
+  background-color: #a11f1f;
+}
+
+.green{
+  background-color: #20a32b;
+}
+
 .filter-button:hover{
 transform: scale(1.05);
 color: var(--font-color2);

@@ -25,11 +25,11 @@ const Filters: React.FC = () => {
     });
   };
 
-  const getButtonStyle = (filterValue: boolean | undefined) => {
+  const getButtonColor = (filterValue: boolean | undefined) => {
     if (filterValue === true) {
-      return { backgroundColor: 'green' };
+      return styles.green;
     } else if (filterValue === false) {
-      return { backgroundColor: 'red' };
+      return styles.red;
     }
   };
 
@@ -41,14 +41,12 @@ const Filters: React.FC = () => {
         All
       </button>
       <button
-        className={styles['filter-button']}
-        style={getButtonStyle(filters.isImportant)}
+        className={`${styles['filter-button']} ${getButtonColor(filters.isImportant)}`}
         onClick={() => handleFilter('isImportant')}>
         Important
       </button>
       <button
-        className={styles['filter-button']}
-        style={getButtonStyle(filters.isCompleted)}
+        className={`${styles['filter-button']} ${getButtonColor(filters.isCompleted)}`}
         onClick={() => handleFilter('isCompleted')}>
         Completed
       </button>
