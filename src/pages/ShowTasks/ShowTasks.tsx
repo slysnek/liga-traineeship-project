@@ -6,6 +6,7 @@ import Filters from 'app/FIlters/Filters';
 import Pagination from 'app/Pagination/Pagination';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { getTasksQuery } from 'src/store/tasksSlice';
+import Search from 'app/Search/Search';
 
 const ShowTasks = () => {
   const tasks = useAppSelector((state) => state.tasksInStore.tasks);
@@ -17,6 +18,7 @@ const ShowTasks = () => {
     <>
       <div className={styles.options}>
         <TitleLink link="add_task" buttonName="Add new task"></TitleLink>
+        <Search />
         <Filters />
       </div>
       <Pagination taskList={TaskList} tasks={tasks}></Pagination>

@@ -4,3 +4,10 @@
   flex-wrap: wrap;
   align-items: center;
 }
+
+@media screen and (max-width: 1000px) {
+  .options{
+   flex-direction: column;
+   gap: 16px;
+  }
+}
