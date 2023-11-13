@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import searchIcon from '../../assets/icons/icon-search.svg';
 import styles from './Search.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { changeFilters, getFilteredTasksQuery } from 'src/store/tasksSlice';
+import { changeFilters, getTasksQuery } from 'src/store/tasksSlice';
 
 const Search: React.FC = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -14,7 +14,7 @@ const Search: React.FC = () => {
   }, [searchValue]);
 
   const handleSearch = () => {
-    dispatch(getFilteredTasksQuery(reduxFilters));
+    dispatch(getTasksQuery(reduxFilters));
   };
 
   return (

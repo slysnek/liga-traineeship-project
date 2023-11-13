@@ -17,13 +17,8 @@ export default class Controller {
     this.dataFetcher = dataFetcher;
   }
 
-  async getData(): Promise<IGetTasksResponse> {
-    const response = await this.dataFetcher.getData(this.url);
-    console.log('Getting data:');
-    return response;
-  }
-  async getFilteredData(filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
-    const response = await this.dataFetcher.getFilteredData(this.url, filters);
+  async getData(filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+    const response = await this.dataFetcher.getData(this.url, filters);
     console.log('Getting filtered data:');
     return response;
   }

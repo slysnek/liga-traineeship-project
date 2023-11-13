@@ -9,14 +9,7 @@ import {
 } from './apiTypes';
 
 export default class Fetcher {
-  async getData(url: string): Promise<IGetTasksResponse> {
-    const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
-      timeout: 5000,
-    });
-    return response.data;
-  }
-
-  async getFilteredData(url: string, filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+  async getData(url: string, filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
     const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
       timeout: 5000,
       params: filters,

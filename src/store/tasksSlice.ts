@@ -14,11 +14,11 @@ import {
 
 const controller = new Controller(BASE_URL, new Fetcher());
 
-export const getTasksQuery = createAsyncThunk<IGetTasksResponse, void, { rejectValue: string }>(
+export const getTasksQuery = createAsyncThunk<IGetTasksResponse, GetFilteredTasksQuery, { rejectValue: string }>(
   'tasksSlice/getTasksQuery',
-  async function (_, { rejectWithValue }) {
+  async function (filters, { rejectWithValue }) {
     try {
-      const response = await controller.getData();
+      const response = await controller.getData(filters);
       return response;
     } catch (error) {
       console.error(error);
@@ -26,19 +26,6 @@ export const getTasksQuery = createAsyncThunk<IGetTasksResponse, void, { rejectV
     }
   }
 );
-export const getFilteredTasksQuery = createAsyncThunk<
-  IGetTasksResponse,
-  GetFilteredTasksQuery,
-  { rejectValue: string }
->('tasksSlice/getFilteredTasksQuery', async function (filters, { rejectWithValue }) {
-  try {
-    const response = await controller.getFilteredData(filters);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return rejectWithValue('Error while fetching filtered tasks!');
-  }
-});
 
 export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: string }>(
   'tasksSlice/removeTaskQuery',
@@ -100,8 +87,8 @@ const tasksSlice = createSlice({
   reducers: {
     addTask(state, action: PayloadAction<IPostTaskResponse>) {
       state.tasks.push({
-        name: action.payload.name,
-        info: action.payload.info,
+        name: action.payload.name?.toString(),
+        info: action.payload.info?.toString(),
         isCompleted: action.payload.isCompleted,
         isImportant: action.payload.isImportant,
       });
@@ -141,19 +128,6 @@ const tasksSlice = createSlice({
       state.tasks = action.payload;
     },
     [String(getTasksQuery.rejected)]: (state, action: PayloadAction<string>) => {
-      state.status = 'rejected';
-      state.error = action.payload;
-    },
-    [String(getFilteredTasksQuery.pending)]: (state) => {
-      state.status = 'loading';
-      state.error = undefined;
-    },
-    [String(getFilteredTasksQuery.fulfilled)]: (state, action: PayloadAction<IGetTasksResponse>) => {
-      state.status = 'resolved';
-      state.error = undefined;
-      state.tasks = action.payload;
-    },
-    [String(getFilteredTasksQuery.rejected)]: (state, action: PayloadAction<string>) => {
       state.status = 'rejected';
       state.error = action.payload;
     },

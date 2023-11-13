@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Filters.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { changeFilters, getFilteredTasksQuery } from 'src/store/tasksSlice';
+import { changeFilters, getTasksQuery } from 'src/store/tasksSlice';
 import { GetFilteredTasksQuery } from 'api/apiTypes';
 
 const Filters: React.FC = () => {
@@ -10,7 +10,7 @@ const Filters: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(changeFilters(filters));
-    dispatch(getFilteredTasksQuery(filters));
+    dispatch(getTasksQuery(filters));
   }, [filters]);
 
   const handleFilter = (filterKey: keyof GetFilteredTasksQuery) => {
