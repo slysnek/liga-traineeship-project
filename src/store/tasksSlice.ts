@@ -74,7 +74,6 @@ export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, ChangeTaskQu
   async function (data, { rejectWithValue, dispatch }) {
     try {
       const taskResponse = await controller.changeData(data);
-      console.log(taskResponse);
       dispatch(editTask(taskResponse));
       return taskResponse;
     } catch (error) {
