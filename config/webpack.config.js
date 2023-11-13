@@ -159,6 +159,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
+      title: 'Todo App',
+      favicon: `./public/notebook.ico`,
       template: `${src}/index.html`,
       ...(isProduction
         ? {
