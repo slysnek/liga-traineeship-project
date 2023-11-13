@@ -1,0 +1,10 @@
+.taskNotFound{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.travoltaGif{
+  width: 128px;
+  height: 128px;
+}
