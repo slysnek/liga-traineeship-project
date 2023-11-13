@@ -7,7 +7,7 @@ const TitleLink: React.FC<TitleLinkProps> = (props) => {
   return (
     <>
       <Link className={styles.link} to={props.link}>
-        <h2>{props.buttonName}</h2>
+        <h3>{props.buttonName}</h3>
       </Link>
     </>
   );

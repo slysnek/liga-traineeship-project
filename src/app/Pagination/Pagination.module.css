@@ -15,7 +15,13 @@
   background-color: var(--button-color);
   font-weight: bold;
   font-size: 1.1rem;
-  border: 1px solid black;
+  border: 1px solid var(--font-color2);
+  box-shadow: 0px 2px 4px var(--font-color2);
+  cursor: pointer;
+}
+
+.select-page-wrapper select:hover{
+  transform: scale(1.05);
 }
 
 .arrow{
