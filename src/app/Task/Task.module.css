@@ -20,11 +20,11 @@
 }
 
 .importantText{
-  color: rgb(247, 238, 69);
+  color: var(--important-text);
 }
 
 .important{
-  border: 3px solid #b32020;
+  border: 3px solid var(--important-border);
 }
 
 .important:hover{

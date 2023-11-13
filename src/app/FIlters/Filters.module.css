@@ -23,11 +23,11 @@
 }
 
 .red{
-  background-color: #a11f1f;
+  background-color: var(--red-button-color);
 }
 
 .green{
-  background-color: #20a32b;
+  background-color: var(--green-button-color);
 }
 
 .filter-button:hover{
