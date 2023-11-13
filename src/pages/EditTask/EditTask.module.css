@@ -8,3 +8,10 @@
   width: 128px;
   height: 128px;
 }
+
+.loader{
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
