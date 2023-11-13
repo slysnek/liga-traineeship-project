@@ -1,13 +1,17 @@
 import { Outlet, useSearchParams, useNavigate, NavLink } from 'react-router-dom';
 import styles from './Layout.module.css';
+import { useAppDispatch } from 'src/hooks/hooks';
+import { changeFilters } from 'src/store/tasksSlice';
 const Layout = () => {
   const navigate = useNavigate();
 
   const [, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
 
   const handleGoHome = () => {
     setSearchParams({});
     navigate('/');
+    dispatch(changeFilters({}));
   };
 
   return (
