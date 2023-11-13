@@ -10,6 +10,12 @@ import { validationSchema } from 'utils/validationSchema';
 
 const Form: React.FC<IForm> = ({ type, taskId }) => {
   const { control, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      name: '',
+      info: '',
+      isCompleted: false,
+      isImportant: false,
+    },
     resolver: yupResolver(validationSchema),
   });
 
@@ -17,8 +23,8 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
 
   useEffect(() => {
     if (taskToEdit) {
-      setValue('name', taskToEdit.name);
-      setValue('info', taskToEdit.info);
+      setValue('name', taskToEdit.name as string);
+      setValue('info', taskToEdit.info as string);
       setValue('isCompleted', taskToEdit.isCompleted as boolean);
       setValue('isImportant', taskToEdit.isImportant as boolean);
     }
