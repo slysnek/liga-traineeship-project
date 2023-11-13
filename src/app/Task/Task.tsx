@@ -18,7 +18,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
   };
 
   return (
-    <li className={styles.task}>
+    <li className={`${styles.task} ${taskData.isImportant ? styles.important : ''}`}>
       <h3 className={styles.name}>{taskData.name ? taskData.name : 'Empty task name'}</h3>
       <div className={styles.edit}>
         <Link to={`task_form/${taskData.id}`}>
@@ -39,7 +39,13 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
             <img className={styles.icon} src={crossIcon} alt="cross icon" />
           </>
         )}
-        {taskData.isImportant ? <img className={styles.icon} src={importantIcon} alt="important icon" /> : null}
+        {taskData.isImportant ? (
+          <>
+            <br />
+            <span className={styles.importantText}>Important&nbsp;</span>
+            <img className={styles.icon} src={importantIcon} alt="important icon" />
+          </>
+        ) : null}
       </label>
     </li>
   );
