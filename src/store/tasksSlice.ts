@@ -22,7 +22,6 @@ export const getTasksQuery = createAsyncThunk<IGetTasksResponse, GetFilteredTask
       const response = await controller.getData(filters);
       return response;
     } catch (error) {
-      console.error(error);
       return rejectWithValue('Error while fetching tasks!');
     }
   }
@@ -35,7 +34,6 @@ export const getTaskByIdQuery = createAsyncThunk<IGetTaskResponse, number, { rej
       const response = await controller.getDataById(id);
       return response;
     } catch (error) {
-      console.error(error);
       return rejectWithValue('Error while fetching task!');
     }
   }
@@ -49,7 +47,6 @@ export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: str
       dispatch(deleteTask(id));
       return;
     } catch (error) {
-      console.error(error);
       return rejectWithValue('Error while removing task!');
     }
   }
@@ -63,7 +60,6 @@ export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, AddTaskQuery,
       dispatch(addTask(taskResponse));
       return taskResponse;
     } catch (error) {
-      console.error(error);
       return rejectWithValue('Error while adding new task!');
     }
   }
@@ -77,7 +73,6 @@ export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, ChangeTaskQu
       dispatch(editTask(taskResponse));
       return taskResponse;
     } catch (error) {
-      console.error(error);
       return rejectWithValue('Error while editing task!');
     }
   }
