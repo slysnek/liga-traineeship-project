@@ -11,10 +11,10 @@ import { getTasksQuery } from 'src/store/tasksSlice';
 const ShowTasks = () => {
   const dispatch = useAppDispatch();
   const tasks = useAppSelector((state) => state.tasksInStore.tasks);
-
+  const filters = useAppSelector((state) => state.tasksInStore.filters);
   useEffect(() => {
-    dispatch(getTasksQuery({}));
-  }, []);
+    dispatch(getTasksQuery(filters));
+  }, [filters]);
 
   return (
     <>
