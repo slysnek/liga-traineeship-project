@@ -49,9 +49,9 @@ export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: str
 
 export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, IPostTaskResponse, { rejectValue: string }>(
   'tasksSlice/addNewTaskQuery',
-  async function ({ name, info, isCompleted }, { rejectWithValue, dispatch }) {
+  async function ({ name, info, isCompleted, isImportant }, { rejectWithValue, dispatch }) {
     try {
-      const taskResponse = await controller.addData({ name, info, isCompleted });
+      const taskResponse = await controller.addData({ name, info, isCompleted, isImportant });
       dispatch(addTask(taskResponse));
       return taskResponse;
     } catch (error) {
@@ -96,6 +96,7 @@ const tasksSlice = createSlice({
         name: action.payload.name,
         info: action.payload.info,
         isCompleted: action.payload.isCompleted,
+        isImportant: action.payload.isImportant,
       });
     },
     searchTask(state, action: PayloadAction<string>) {
