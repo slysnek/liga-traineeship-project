@@ -12,7 +12,7 @@ const ShowTasks = () => {
   return (
     <>
       <div className={styles.options}>
-        <TitleLink link="add_task" buttonName="Add new task"></TitleLink>
+        <TitleLink link="task_form" buttonName="Add new task"></TitleLink>
         <Search />
         <Filters />
       </div>

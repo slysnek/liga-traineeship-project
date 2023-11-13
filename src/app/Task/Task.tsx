@@ -21,7 +21,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
     <li className={styles.task}>
       <h3 className={styles.name}>{taskData.name ? taskData.name : 'Empty task name'}</h3>
       <div className={styles.edit}>
-        <Link to={`add_task/${taskData.id}`}>
+        <Link to={`task_form/${taskData.id}`}>
           <img className={styles.icon} src={pencilIcon} alt="pencil icon" />
         </Link>
         <img onClick={handleDelete} className={styles.icon} src={deleteIcon} alt="delete icon" />

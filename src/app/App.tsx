@@ -13,8 +13,8 @@ export function App() {
           <Route path="/" element={<ShowTasks />} />
           <Route path="*" element={<Navigate to="not_found" replace={true} />} />
           <Route path="not_found" element={<NotFound />} />
-          <Route path="add_task" element={<AddTask />} />
-          <Route path="add_task/:id" element={<EditTask />} />
+          <Route path="task_form" element={<AddTask />} />
+          <Route path="task_form/:id" element={<EditTask />} />
         </Route>
       </Routes>
     </>
