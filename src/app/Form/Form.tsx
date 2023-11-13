@@ -43,7 +43,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
           control={control}
           render={({ field, fieldState }) => (
             <>
-              <input {...field} placeholder="Task name" type="text" />
+              <input className={styles['form-input']} {...field} placeholder="Task name" type="text" />
               {fieldState.error && <p>{fieldState.error.message}</p>}
             </>
           )}
@@ -54,7 +54,12 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
           control={control}
           render={({ field, fieldState }) => (
             <>
-              <textarea {...field} placeholder="Task info" cols={30} rows={5}></textarea>
+              <textarea
+                className={styles['form-textarea']}
+                {...field}
+                placeholder="Task info"
+                cols={30}
+                rows={5}></textarea>
               {fieldState.error && <p>{fieldState.error.message}</p>}
             </>
           )}
