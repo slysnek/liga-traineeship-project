@@ -3,6 +3,7 @@ import {
   AddTaskQuery,
   ChangeTaskQuery,
   GetFilteredTasksQuery,
+  IGetTaskResponse,
   IGetTasksResponse,
   IPatchTaskResponse,
   IPostTaskResponse,
@@ -19,6 +20,11 @@ export default class Controller {
 
   async getData(filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
     const response = await this.dataFetcher.getData(this.url, filters);
+    console.log('Getting filtered data:');
+    return response;
+  }
+  async getDataById(id: number): Promise<IGetTaskResponse> {
+    const response = await this.dataFetcher.getDataById(this.url, id);
     console.log('Getting filtered data:');
     return response;
   }

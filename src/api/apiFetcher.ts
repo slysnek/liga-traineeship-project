@@ -3,6 +3,7 @@ import {
   AddTaskQuery,
   ChangeTaskQuery,
   GetFilteredTasksQuery,
+  IGetTaskResponse,
   IGetTasksResponse,
   IPatchTaskResponse,
   IPostTaskResponse,
@@ -60,6 +61,16 @@ export default class Fetcher {
       if (!(response.status === 200)) {
         throw new Error("Task doesn't exist");
       }
+    } catch (error) {
+      throw new Error((error as Error).message);
+    }
+  }
+
+  async getDataById(url: string, id: number): Promise<IGetTaskResponse> {
+    try {
+      const resource = `${url}/${id}`;
+      const response: AxiosResponse<IGetTaskResponse> = await axios.get(resource);
+      return response.data;
     } catch (error) {
       throw new Error((error as Error).message);
     }

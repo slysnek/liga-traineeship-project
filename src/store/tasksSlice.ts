@@ -7,6 +7,7 @@ import {
   AddTaskQuery,
   ChangeTaskQuery,
   GetFilteredTasksQuery,
+  IGetTaskResponse,
   IGetTasksResponse,
   IPatchTaskResponse,
   IPostTaskResponse,
@@ -23,6 +24,19 @@ export const getTasksQuery = createAsyncThunk<IGetTasksResponse, GetFilteredTask
     } catch (error) {
       console.error(error);
       return rejectWithValue('Error while fetching tasks!');
+    }
+  }
+);
+
+export const getTaskByIdQuery = createAsyncThunk<IGetTaskResponse, number, { rejectValue: string }>(
+  'tasksSlice/getTaskByIdQuery',
+  async function (id, { rejectWithValue }) {
+    try {
+      const response = await controller.getDataById(id);
+      return response;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue('Error while fetching task!');
     }
   }
 );
@@ -74,6 +88,7 @@ const initialState: TasksInitialState = {
   tasks: [],
   status: undefined,
   error: undefined,
+  currentTask: undefined,
   filters: {
     isImportant: undefined,
     isCompleted: undefined,
@@ -128,6 +143,19 @@ const tasksSlice = createSlice({
       state.tasks = action.payload;
     },
     [String(getTasksQuery.rejected)]: (state, action: PayloadAction<string>) => {
+      state.status = 'rejected';
+      state.error = action.payload;
+    },
+    [String(getTaskByIdQuery.pending)]: (state) => {
+      state.status = 'loading';
+      state.error = undefined;
+    },
+    [String(getTaskByIdQuery.fulfilled)]: (state, action: PayloadAction<IGetTaskResponse>) => {
+      state.status = 'resolved';
+      state.error = undefined;
+      state.currentTask = action.payload;
+    },
+    [String(getTaskByIdQuery.rejected)]: (state, action: PayloadAction<string>) => {
       state.status = 'rejected';
       state.error = action.payload;
     },
