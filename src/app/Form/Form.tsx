@@ -1,79 +1,93 @@
-import { useEffect, useState } from 'react';
-import * as Yup from 'yup';
+import { useEffect } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import styles from './Form.module.css';
 import { IForm } from './Form.types';
 import { addNewTaskQuery, changeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
+import { AddTaskQuery, ChangeTaskQuery } from 'api/apiTypes';
+import { validationSchema } from 'utils/validationSchema';
 
 const Form: React.FC<IForm> = ({ type, taskId }) => {
-  const [name, setName] = useState<string | undefined>('');
-  const [info, setInfo] = useState<string | undefined>('');
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [isImportant, setIsImportant] = useState<boolean>(false);
+  const { control, handleSubmit, setValue } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
   const taskToEdit = useAppSelector((state) => state.tasksInStore.tasks.find((task) => task.id === taskId));
 
   useEffect(() => {
     if (taskToEdit) {
-      setInfo(taskToEdit.info);
-      setName(taskToEdit.name);
-      setIsCompleted(taskToEdit.isCompleted as boolean);
-      setIsImportant(taskToEdit.isImportant as boolean);
+      setValue('name', taskToEdit.name);
+      setValue('info', taskToEdit.info);
+      setValue('isCompleted', taskToEdit.isCompleted as boolean);
+      setValue('isImportant', taskToEdit.isImportant as boolean);
     }
-  }, []);
+  }, [taskToEdit]);
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = (data: AddTaskQuery | ChangeTaskQuery) => {
     if (type === 'Add task') {
-      dispatch(addNewTaskQuery({ name: name, info: info, isCompleted: isCompleted, isImportant: isImportant }));
-      setInfo('');
-      setName('');
-      setIsCompleted(false);
-      setIsImportant(false);
+      dispatch(addNewTaskQuery(data));
     }
     if (type === 'Edit task') {
-      dispatch(
-        changeTaskQuery({ name: name, info: info, isCompleted: isCompleted, id: taskId, isImportant: isImportant })
-      );
+      dispatch(changeTaskQuery({ ...data, id: taskId }));
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={styles.form} action="">
-        <input value={name} onChange={(e) => setName(e.target.value)} required placeholder="Task name" type="text" />
-        <textarea
-          value={info}
-          onChange={(e) => setInfo(e.target.value)}
-          required
-          placeholder="Task info"
-          name=""
-          id=""
-          cols={30}
-          rows={5}></textarea>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form} action="">
+        <Controller
+          name="name"
+          control={control}
+          render={({ field, fieldState }) => (
+            <>
+              <input {...field} placeholder="Task name" type="text" />
+              {fieldState.error && <p>{fieldState.error.message}</p>}
+            </>
+          )}
+        />
+
+        <Controller
+          name="info"
+          control={control}
+          render={({ field, fieldState }) => (
+            <>
+              <textarea {...field} placeholder="Task info" cols={30} rows={5}></textarea>
+              {fieldState.error && <p>{fieldState.error.message}</p>}
+            </>
+          )}
+        />
+
         <label>
           Is task completed?&nbsp;
-          <input
-            checked={isCompleted}
-            onChange={(e) => {
-              setIsCompleted(e.target.checked);
-            }}
-            type="checkbox"
+          <Controller
+            name="isCompleted"
+            control={control}
+            render={({ field, fieldState }) => (
+              <>
+                <input checked={field.value} onChange={(e) => field.onChange(e.target.checked)} type="checkbox" />
+                {fieldState.error && <p>{fieldState.error.message}</p>}
+              </>
+            )}
           />
         </label>
+
         <label>
           Is task important?&nbsp;
-          <input
-            checked={isImportant}
-            onChange={(e) => {
-              setIsImportant(e.target.checked);
-            }}
-            type="checkbox"
+          <Controller
+            name="isImportant"
+            control={control}
+            render={({ field, fieldState }) => (
+              <>
+                <input checked={field.value} onChange={(e) => field.onChange(e.target.checked)} type="checkbox" />
+                {fieldState.error && <p>{fieldState.error.message}</p>}
+              </>
+            )}
           />
         </label>
+
         <button type="submit">{type}</button>
       </form>
     </>
