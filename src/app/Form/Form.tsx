@@ -13,7 +13,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const taskToEdit = useAppSelector((state) => state.tasksInStore.tasks.find((task) => task.id === taskId));
+  const taskToEdit = useAppSelector((state) => state.tasksInStore.currentTask);
 
   useEffect(() => {
     if (taskToEdit) {

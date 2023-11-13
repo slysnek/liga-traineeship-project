@@ -6,20 +6,19 @@ import Form from 'app/Form/Form';
 import { FormButton } from 'app/Form/Form.types';
 import TitleLink from 'components/TitleLink/TitleLink';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { getTasksQuery } from 'src/store/tasksSlice';
+import { getTaskByIdQuery } from 'src/store/tasksSlice';
 import { Loader } from 'components/Loader';
 
 const EditTask = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const tasks = useAppSelector((state) => state.tasksInStore.tasks);
-  const task = tasks.find((task) => task.id === Number(id));
+  const task = useAppSelector((state) => state.tasksInStore.currentTask);
 
   useEffect(() => {
-    dispatch(getTasksQuery({}));
+    dispatch(getTaskByIdQuery(Number(id)));
   }, []);
 
-  if (!tasks.length) {
+  if (!task) {
     return (
       <div className={styles.loader}>
         <Loader isLoading={true}>
