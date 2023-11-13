@@ -1,30 +1,24 @@
-import { useEffect, useState } from 'react';
 import styles from './Filters.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { changeFilters, getTasksQuery } from 'src/store/tasksSlice';
 import { GetFilteredTasksQuery } from 'api/apiTypes';
 
 const Filters: React.FC = () => {
-  const [filters, setFilters] = useState<GetFilteredTasksQuery>({ isImportant: undefined, isCompleted: undefined });
   const reduxFilters = useAppSelector((state) => state.tasksInStore.filters);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(changeFilters(filters));
-    dispatch(getTasksQuery(filters));
-  }, [filters]);
 
   const handleFilter = (filterKey: keyof GetFilteredTasksQuery) => {
     const currentValue = reduxFilters[filterKey];
 
     if (currentValue === undefined) {
-      setFilters({ ...reduxFilters, [filterKey]: true });
       dispatch(changeFilters({ ...reduxFilters, [filterKey]: true }));
+      dispatch(getTasksQuery({ ...reduxFilters, [filterKey]: true }));
     } else if (currentValue === true) {
-      setFilters({ ...reduxFilters, [filterKey]: false });
       dispatch(changeFilters({ ...reduxFilters, [filterKey]: false }));
+      dispatch(getTasksQuery({ ...reduxFilters, [filterKey]: false }));
     } else {
-      setFilters({ ...reduxFilters, [filterKey]: undefined });
       dispatch(changeFilters({ ...reduxFilters, [filterKey]: undefined }));
+      dispatch(getTasksQuery({ ...reduxFilters, [filterKey]: undefined }));
     }
   };
 
@@ -38,18 +32,18 @@ const Filters: React.FC = () => {
 
   return (
     <div className={styles['filters-wrapper']}>
-      <button
+      {/*       <button
         className={styles['filter-button']}
         onClick={() => setFilters({ ...reduxFilters, isImportant: undefined, isCompleted: undefined })}>
         All
-      </button>
+      </button> */}
       <button
-        className={`${styles['filter-button']} ${getButtonStyle(filters.isImportant)}`}
+        className={`${styles['filter-button']} ${getButtonStyle(reduxFilters.isImportant)}`}
         onClick={() => handleFilter('isImportant')}>
         Important
       </button>
       <button
-        className={`${styles['filter-button']} ${getButtonStyle(filters.isCompleted)}`}
+        className={`${styles['filter-button']} ${getButtonStyle(reduxFilters.isCompleted)}`}
         onClick={() => handleFilter('isCompleted')}>
         Completed
       </button>
