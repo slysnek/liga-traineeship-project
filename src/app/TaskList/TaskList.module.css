@@ -14,7 +14,7 @@
 .status{
   margin: 1rem auto;
   text-align: center;
-  color: #7e1919;
+  color: var(--status-error);
 }
 
 @media screen and (max-width: 400px) {
