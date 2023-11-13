@@ -46,6 +46,7 @@ export default class Fetcher {
           name: formData.name,
           info: formData.info,
           isCompleted: formData.isCompleted,
+          isImportant: formData.isImportant,
         },
         {
           headers: {

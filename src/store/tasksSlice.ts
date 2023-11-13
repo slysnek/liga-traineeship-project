@@ -3,7 +3,14 @@ import { TasksInitialState } from './storeTypes';
 import Controller from 'api/apiController';
 import Fetcher from 'api/apiFetcher';
 import { BASE_URL } from 'constants/constants';
-import { GetFilteredTasksQuery, IGetTasksResponse, IPatchTaskResponse, IPostTaskResponse } from 'api/apiTypes';
+import {
+  AddTaskQuery,
+  ChangeTaskQuery,
+  GetFilteredTasksQuery,
+  IGetTasksResponse,
+  IPatchTaskResponse,
+  IPostTaskResponse,
+} from 'api/apiTypes';
 
 const controller = new Controller(BASE_URL, new Fetcher());
 
@@ -47,11 +54,11 @@ export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: str
   }
 );
 
-export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, IPostTaskResponse, { rejectValue: string }>(
+export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, AddTaskQuery, { rejectValue: string }>(
   'tasksSlice/addNewTaskQuery',
-  async function ({ name, info, isCompleted, isImportant }, { rejectWithValue, dispatch }) {
+  async function (data, { rejectWithValue, dispatch }) {
     try {
-      const taskResponse = await controller.addData({ name, info, isCompleted, isImportant });
+      const taskResponse = await controller.addData(data);
       dispatch(addTask(taskResponse));
       return taskResponse;
     } catch (error) {
@@ -61,11 +68,11 @@ export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, IPostTaskResp
   }
 );
 
-export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, IPatchTaskResponse, { rejectValue: string }>(
+export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, ChangeTaskQuery, { rejectValue: string }>(
   'tasksSlice/changeTaskQuery',
-  async function ({ name, info, isCompleted, id }, { rejectWithValue, dispatch }) {
+  async function (data, { rejectWithValue, dispatch }) {
     try {
-      const taskResponse = await controller.changeData({ name, info, isCompleted, id });
+      const taskResponse = await controller.changeData(data);
       console.log(taskResponse);
       dispatch(editTask(taskResponse));
       return taskResponse;
@@ -117,6 +124,7 @@ const tasksSlice = createSlice({
       state.tasks[taskID].name = action.payload.name;
       state.tasks[taskID].info = action.payload.info;
       state.tasks[taskID].isCompleted = action.payload.isCompleted;
+      state.tasks[taskID].isImportant = action.payload.isImportant;
     },
     deleteTask(state, action: PayloadAction<number>) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
