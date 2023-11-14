@@ -23,7 +23,7 @@ const ShowTasks = () => {
         <Search />
         <Filters />
       </div>
-      <Pagination taskList={TaskList} tasks={tasks}></Pagination>
+      <Pagination list={TaskList} dataToMap={tasks}></Pagination>
     </>
   );
 };

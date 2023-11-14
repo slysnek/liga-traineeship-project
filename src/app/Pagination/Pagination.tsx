@@ -6,18 +6,18 @@ import { IPaginationProps } from './Pagination.types';
 import { PAGE_SIZE } from 'constants/constants';
 import { ITaskType } from 'app/Task/Task.types';
 
-const Pagination: React.FC<IPaginationProps> = ({ tasks, taskList: TaskList }) => {
+const Pagination: React.FC<IPaginationProps> = ({ dataToMap, list: TaskList }) => {
   const pageSize = PAGE_SIZE;
   const [currentPage, setCurrentPage] = useState(1);
   const [tasksForPage, setTasksForPage] = useState<ITaskType[]>([]);
-  const totalPages = Math.ceil(tasks.length / pageSize);
+  const totalPages = Math.ceil(dataToMap.length / pageSize);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-    const tasksForPageDisplay = tasks.slice(startIndex, endIndex);
+    const tasksForPageDisplay = dataToMap.slice(startIndex, endIndex);
     setTasksForPage(tasksForPageDisplay);
-  }, [tasks, currentPage, pageSize]);
+  }, [dataToMap, currentPage, pageSize]);
 
   return (
     <>
