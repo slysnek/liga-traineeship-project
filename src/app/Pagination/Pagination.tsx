@@ -16,28 +16,33 @@ const Pagination: React.FC<IPaginationProps> = ({ dataToMap, list: TaskList }) =
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const tasksForPageDisplay = dataToMap.slice(startIndex, endIndex);
+    if (!tasksForPageDisplay.length && currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
     setTasksForPage(tasksForPageDisplay);
   }, [dataToMap, currentPage, pageSize]);
 
   return (
     <>
-      <div className={styles['select-page-wrapper']}>
-        <img
-          className={styles.arrow}
-          src={arrowLeft}
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}></img>
-        <select value={currentPage} onChange={(e) => setCurrentPage(Number(e.target.value))}>
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-            <option key={page} value={page}>
-              {page}
-            </option>
-          ))}
-        </select>
-        <img
-          className={styles.arrow}
-          src={arrowRight}
-          onClick={() => setCurrentPage((prev) => (prev + 1 > totalPages ? prev : prev + 1))}></img>
-      </div>
+      {dataToMap.length ? (
+        <div className={styles['select-page-wrapper']}>
+          <img
+            className={styles.arrow}
+            src={arrowLeft}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}></img>
+          <select value={currentPage} onChange={(e) => setCurrentPage(Number(e.target.value))}>
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+              <option key={page} value={page}>
+                {page}
+              </option>
+            ))}
+          </select>
+          <img
+            className={styles.arrow}
+            src={arrowRight}
+            onClick={() => setCurrentPage((prev) => (prev + 1 > totalPages ? prev : prev + 1))}></img>
+        </div>
+      ) : null}
       <TaskList tasks={tasksForPage} />
     </>
   );
