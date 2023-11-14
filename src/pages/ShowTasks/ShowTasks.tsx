@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './ShowTasks.module.css';
 import TaskList from 'app/TaskList/TaskList';
 import TitleLink from 'components/TitleLink/TitleLink';
@@ -12,8 +12,13 @@ const ShowTasks = () => {
   const dispatch = useAppDispatch();
   const tasks = useAppSelector((state) => state.tasksInStore.tasks);
   const filters = useAppSelector((state) => state.tasksInStore.filters);
+
+  const prevFilters = useRef(filters);
+
   useEffect(() => {
-    dispatch(getTasksQuery(filters));
+    if (filters !== prevFilters.current) {
+      dispatch(getTasksQuery(filters));
+    }
   }, [dispatch, filters]);
 
   return (
