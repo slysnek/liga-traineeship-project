@@ -8,6 +8,7 @@ import styles from './Task.module.css';
 import { ITaskType } from './Task.types';
 import { removeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch } from 'src/hooks/hooks';
+import { typeCheck } from 'utils/typeCheck';
 
 const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
       </div>
       <p>{taskData.info}</p>
       <label className={styles.inputCheck}>
-        {taskData.isCompleted ? (
+        {typeCheck(taskData.isCompleted) ? (
           <>
             Completed&nbsp;
             <img className={styles.icon} src={checkmarkIcon} alt="checkmark icon" />
@@ -39,7 +40,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
             <img className={styles.icon} src={crossIcon} alt="cross icon" />
           </>
         )}
-        {taskData.isImportant ? (
+        {typeCheck(taskData.isImportant) ? (
           <>
             <br />
             <span className={styles.importantText}>Important&nbsp;</span>
