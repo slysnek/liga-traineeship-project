@@ -1,4 +1,4 @@
-export const typeCheck = (value: boolean | undefined | string) => {
+export const convertToBoolean = (value: boolean | undefined | string) => {
   return typeof value === 'undefined'
     ? false
     : typeof value === 'boolean'

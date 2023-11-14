@@ -7,7 +7,7 @@ import { addNewTaskQuery, changeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { AddTaskQuery, ChangeTaskQuery } from 'api/apiTypes';
 import { validationSchema } from 'utils/validationSchema';
-import { typeCheck } from 'utils/typeCheck';
+import { convertToBoolean } from 'utils/convertToBoolean';
 
 const Form: React.FC<IForm> = ({ type, taskId }) => {
   const { control, handleSubmit, setValue } = useForm({
@@ -26,8 +26,8 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
     if (type === 'editTask' && taskToEdit) {
       setValue('name', taskToEdit.name ? taskToEdit.name : '');
       setValue('info', taskToEdit.info ? taskToEdit.info : '');
-      setValue('isCompleted', typeCheck(taskToEdit.isCompleted));
-      setValue('isImportant', typeCheck(taskToEdit.isImportant));
+      setValue('isCompleted', convertToBoolean(taskToEdit.isCompleted));
+      setValue('isImportant', convertToBoolean(taskToEdit.isImportant));
     } else {
       setValue('name', '');
       setValue('info', '');
