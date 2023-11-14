@@ -14,13 +14,21 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      dispatch(changeFilters({ ...reduxFilters, name_like: searchQuery }));
+      dispatch(changeFilters({ name_like: searchQuery }));
+    }
+    if (searchQuery === '' || searchQuery === null) {
+      dispatch(changeFilters({ name_like: undefined }));
     }
   }, [searchQuery]);
 
   const handleTyping = (searchValue: string) => {
-    setSearchParams({ searchQuery: searchValue });
-    dispatch(changeFilters({ ...reduxFilters, name_like: searchValue }));
+    if (searchValue) {
+      searchParams.set('searchQuery', searchValue);
+    } else {
+      searchParams.delete('searchQuery');
+    }
+
+    setSearchParams(searchParams);
   };
 
   return (
