@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import taskNotFound from '../../assets/gif/task-not-found.gif';
 import styles from './EditTask.module.css';
 import Form from 'app/Form/Form';
-import { FormButton } from 'app/Form/Form.types';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { getTaskByIdQuery } from 'src/store/tasksSlice';
 import { Loader } from 'components/Loader';
