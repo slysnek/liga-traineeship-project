@@ -14,7 +14,7 @@ const ShowTasks = () => {
   const filters = useAppSelector((state) => state.tasksInStore.filters);
   useEffect(() => {
     dispatch(getTasksQuery(filters));
-  }, [filters]);
+  }, [dispatch, filters]);
 
   return (
     <>
