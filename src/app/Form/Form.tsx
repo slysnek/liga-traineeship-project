@@ -34,7 +34,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
       setValue('isCompleted', false);
       setValue('isImportant', false);
     }
-  }, [type]);
+  }, [type, taskToEdit]);
 
   const dispatch = useAppDispatch();
 
