@@ -4,10 +4,10 @@ import taskNotFound from '../../assets/gif/task-not-found.gif';
 import styles from './EditTask.module.css';
 import Form from 'app/Form/Form';
 import { FormButton } from 'app/Form/Form.types';
-import TitleLink from 'components/TitleLink/TitleLink';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { getTaskByIdQuery } from 'src/store/tasksSlice';
 import { Loader } from 'components/Loader';
+import ReturnBack from 'components/ReturnBack/ReturnBack';
 
 const EditTask = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ const EditTask = () => {
 
   return (
     <>
-      <TitleLink link="/" buttonName="Back to tasks"></TitleLink>
+      <ReturnBack buttonName="Back to tasks"></ReturnBack>
       {task ? (
         <Form taskId={Number(id)} type={'Edit task' as FormButton}></Form>
       ) : (

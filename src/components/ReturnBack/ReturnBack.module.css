@@ -1,0 +1,19 @@
+@import '../../index.css';
+
+.link{
+    margin: 16px auto;
+    display: block;
+    text-align: center;
+    padding: 16px;
+    color: var(--font-color2);
+    background-color: var(--button-color);
+    width: fit-content;
+    border-radius: 16px;
+    border: 1px solid var(--font-color2);
+    box-shadow: 0px 2px 4px var(--font-color2);
+}
+
+.link:hover{
+ transform: scale(1.05);
+ color: var(--font-color2);
+}

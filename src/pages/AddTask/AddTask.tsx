@@ -1,10 +1,10 @@
 import Form from 'app/Form/Form';
-import TitleLink from 'components/TitleLink/TitleLink';
+import ReturnBack from 'components/ReturnBack/ReturnBack';
 
 const AddTask = () => {
   return (
     <>
-      <TitleLink link="/" buttonName="Back to tasks"></TitleLink>
+      <ReturnBack buttonName="Back to tasks"></ReturnBack>
       <Form type={'Add task'}></Form>
     </>
   );
