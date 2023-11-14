@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
-import styles from './Form.module.css';
 import { IForm } from './Form.types';
+import styles from 'app/Form/Form.module.css';
 import { addNewTaskQuery, changeTaskQuery, resetAddAndEditTaskStatus } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { AddTaskQuery, ChangeTaskQuery } from 'api/apiTypes';

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import styles from './ShowTasks.module.css';
+import styles from 'pages/ShowTasks/ShowTasks.module.css';
 import TaskList from 'app/TaskList/TaskList';
 import TitleLink from 'components/TitleLink/TitleLink';
 import Filters from 'app/FIlters/Filters';

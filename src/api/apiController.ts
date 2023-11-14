@@ -1,13 +1,13 @@
-import Fetcher from './apiFetcher';
 import {
-  AddTaskQuery,
-  ChangeTaskQuery,
   GetFilteredTasksQuery,
-  IGetTaskResponse,
   IGetTasksResponse,
-  IPatchTaskResponse,
+  IGetTaskResponse,
+  AddTaskQuery,
   IPostTaskResponse,
-} from './apiTypes';
+  ChangeTaskQuery,
+  IPatchTaskResponse,
+} from 'api/apiTypes';
+import Fetcher from 'api/apiFetcher';
 
 export default class Controller {
   url: string;

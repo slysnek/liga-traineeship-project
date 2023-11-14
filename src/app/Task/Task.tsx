@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import pencilIcon from '../../assets/icons/icon-pencil.svg';
-import crossIcon from '../../assets/icons/icon-cross.svg';
-import checkmarkIcon from '../../assets/icons/icon-checkmark.svg';
-import deleteIcon from '../../assets/icons/icon-delete.svg';
-import importantIcon from '../../assets/icons/icon-important.svg';
-import styles from './Task.module.css';
-import { ITaskType } from './Task.types';
+import styles from 'app/Task/Task.module.css';
+import { ITaskType } from 'app/Task/Task.types';
+import pencilIcon from 'assets/icons/icon-pencil.svg';
+import crossIcon from 'assets/icons/icon-cross.svg';
+import checkmarkIcon from 'assets/icons/icon-checkmark.svg';
+import deleteIcon from 'assets/icons/icon-delete.svg';
+import importantIcon from 'assets/icons/icon-important.svg';
 import { removeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch } from 'src/hooks/hooks';
 import { convertToBoolean } from 'utils/convertToBoolean';

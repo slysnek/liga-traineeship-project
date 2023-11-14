@@ -1,6 +1,6 @@
-import styles from './TaskList.module.css';
-import { ITaskListProps } from './TaskList.types';
+import { ITaskListProps } from 'app/TaskList/TaskList.types';
 import Task from 'app/Task/Task';
+import styles from 'app/TaskList/TaskList.module.css';
 import { useAppSelector } from 'src/hooks/hooks';
 import { Loader } from 'components/Loader';
 import PopUp from 'components/PopUp/PopUp';

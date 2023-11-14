@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './ReturnBack.module.css';
-import { ReturnBackProps } from './ReturnBack.types';
+import styles from 'components/ReturnBack/ReturnBack.module.css';
+import { ReturnBackProps } from 'components/ReturnBack/ReturnBack.types';
 
 const ReturnBack: React.FC<ReturnBackProps> = (props) => {
   const navigate = useNavigate();

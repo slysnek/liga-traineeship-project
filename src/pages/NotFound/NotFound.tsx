@@ -1,5 +1,5 @@
-import dissapear from '../../assets/gif/dissapear.gif';
-import styles from './NotFound.module.css';
+import styles from 'pages/NotFound/NotFound.module.css';
+import dissapear from 'assets/gif/dissapear.gif';
 import ReturnBack from 'components/ReturnBack/ReturnBack';
 
 const NotFound = () => {

@@ -7,7 +7,7 @@ import {
   IGetTasksResponse,
   IPatchTaskResponse,
   IPostTaskResponse,
-} from './apiTypes';
+} from 'api/apiTypes';
 
 export default class Fetcher {
   private abortController: AbortController | null = null;

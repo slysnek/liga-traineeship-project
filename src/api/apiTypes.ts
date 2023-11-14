@@ -1,4 +1,4 @@
-import { paths } from '../types/apiTypes';
+import { paths } from 'types/apiTypes';
 
 export type AddTaskQuery = {
   name?: string;

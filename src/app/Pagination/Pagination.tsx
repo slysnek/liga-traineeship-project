@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import arrowRight from '../../assets/icons/icon-arrow-right.svg';
-import arrowLeft from '../../assets/icons/icon-arrow-left.svg';
-import styles from './Pagination.module.css';
-import { IPaginationProps } from './Pagination.types';
+import { IPaginationProps } from 'app/Pagination/Pagination.types';
+import styles from 'app/Pagination/Pagination.module.css';
+import arrowLeft from 'assets/icons/icon-arrow-left.svg';
+import arrowRight from 'assets/icons/icon-arrow-right.svg';
 import { PAGE_SIZE } from 'constants/constants';
 import { ITaskType } from 'app/Task/Task.types';
 

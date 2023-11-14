@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { logger } from 'redux-logger';
-import tasksSlice from './tasksSlice';
+import tasksSlice from 'src/store/tasksSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import taskNotFound from '../../assets/gif/task-not-found.gif';
-import styles from './EditTask.module.css';
+import styles from 'pages/EditTask/EditTask.module.css';
+import taskNotFound from 'assets/gif/task-not-found.gif';
 import Form from 'app/Form/Form';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { getTaskByIdQuery, getTasksQuery } from 'src/store/tasksSlice';

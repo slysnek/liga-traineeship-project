@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import styles from './PopUp.module.css';
-import { PopUpProps } from './PopUp.types';
+import styles from 'components/PopUp/PopUp.module.css';
+import { PopUpProps } from 'components/PopUp/PopUp.types';
 
 const PopUp: React.FC<PopUpProps> = ({ message, error }) => {
   const [visible, setVisible] = useState(true);

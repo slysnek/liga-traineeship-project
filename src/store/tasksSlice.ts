@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TasksInitialState } from './storeTypes';
+import { TasksInitialState } from 'src/store/storeTypes';
 import Controller from 'api/apiController';
 import Fetcher from 'api/apiFetcher';
 import { BASE_URL } from 'constants/constants';

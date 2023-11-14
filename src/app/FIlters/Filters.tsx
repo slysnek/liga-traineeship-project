@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import styles from './Filters.module.css';
+import styles from 'app/FIlters/Filters.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { changeFilters } from 'src/store/tasksSlice';
 import { GetFilteredTasksQuery } from 'api/apiTypes';

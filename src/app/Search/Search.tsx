@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './Search.module.css';
+import styles from 'app/Search/Search.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { changeFilters } from 'src/store/tasksSlice';
 import { searchSchema } from 'utils/searchSchema';

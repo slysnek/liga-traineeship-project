@@ -1,4 +1,4 @@
-import styles from './AddTask.module.css';
+import styles from 'pages/AddTask/AddTask.module.css';
 import Form from 'app/Form/Form';
 import { Loader } from 'components/Loader';
 import PopUp from 'components/PopUp/PopUp';
