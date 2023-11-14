@@ -22,13 +22,18 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
   const taskToEdit = useAppSelector((state) => state.tasksInStore.currentTask);
 
   useEffect(() => {
-    if (taskToEdit) {
+    if (type === 'editTask' && taskToEdit) {
       setValue('name', taskToEdit.name as string);
       setValue('info', taskToEdit.info as string);
       setValue('isCompleted', taskToEdit.isCompleted as boolean);
       setValue('isImportant', taskToEdit.isImportant as boolean);
+    } else {
+      setValue('name', '');
+      setValue('info', '');
+      setValue('isCompleted', false);
+      setValue('isImportant', false);
     }
-  }, [taskToEdit]);
+  }, [type]);
 
   const dispatch = useAppDispatch();
 
