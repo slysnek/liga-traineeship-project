@@ -56,7 +56,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
           render={({ field, fieldState }) => (
             <>
               <input className={styles['form-input']} {...field} placeholder="Task name" type="text" />
-              {fieldState.error && <p>{fieldState.error.message}</p>}
+              {fieldState.error && <p className={styles.error}>{fieldState.error.message}</p>}
             </>
           )}
         />
@@ -72,12 +72,12 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
                 placeholder="Task info"
                 cols={30}
                 rows={5}></textarea>
-              {fieldState.error && <p>{fieldState.error.message}</p>}
+              {fieldState.error && <p className={styles.error}>{fieldState.error.message}</p>}
             </>
           )}
         />
 
-        <label>
+        <label className={styles.checkbox}>
           Is task completed?&nbsp;
           <Controller
             name="isCompleted"
@@ -85,13 +85,13 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
             render={({ field, fieldState }) => (
               <>
                 <input checked={field.value} onChange={(e) => field.onChange(e.target.checked)} type="checkbox" />
-                {fieldState.error && <p>{fieldState.error.message}</p>}
+                {fieldState.error && <p className={styles.error}>{fieldState.error.message}</p>}
               </>
             )}
           />
         </label>
 
-        <label>
+        <label className={styles.checkbox}>
           Is task important?&nbsp;
           <Controller
             name="isImportant"
@@ -99,7 +99,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
             render={({ field, fieldState }) => (
               <>
                 <input checked={field.value} onChange={(e) => field.onChange(e.target.checked)} type="checkbox" />
-                {fieldState.error && <p>{fieldState.error.message}</p>}
+                {fieldState.error && <p className={styles.error}>{fieldState.error.message}</p>}
               </>
             )}
           />

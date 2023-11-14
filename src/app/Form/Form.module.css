@@ -42,6 +42,17 @@
   border: 2px solid var(--font-color)
 }
 
+.error{
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--status-error);
+}
+
+.checkbox{
+  text-align: center;
+}
+
 @media screen and (max-width: 400px) {
   .form{
     width: 300px;
