@@ -1,4 +1,4 @@
-export type FormButton = 'Add task' | 'Edit task';
+export type FormButton = 'addTask' | 'editTask';
 
 export interface IForm {
   type: FormButton;

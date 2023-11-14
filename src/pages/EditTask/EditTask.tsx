@@ -32,7 +32,7 @@ const EditTask = () => {
     <>
       <ReturnBack buttonName="Back to tasks"></ReturnBack>
       {task ? (
-        <Form taskId={Number(id)} type={'Edit task' as FormButton}></Form>
+        <Form taskId={Number(id)} type={'editTask'}></Form>
       ) : (
         <div className={styles.taskNotFound}>
           <h2>Such a task was not found...</h2>

@@ -33,10 +33,10 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: AddTaskQuery | ChangeTaskQuery) => {
-    if (type === 'Add task') {
+    if (type === 'addTask') {
       dispatch(addNewTaskQuery(data));
     }
-    if (type === 'Edit task') {
+    if (type === 'editTask') {
       dispatch(changeTaskQuery({ ...data, id: taskId }));
     }
   };
@@ -99,7 +99,7 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
           />
         </label>
 
-        <button type="submit">{type}</button>
+        <button type="submit">{type === 'addTask' ? 'Add task' : 'Edit task'}</button>
       </form>
     </>
   );

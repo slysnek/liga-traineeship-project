@@ -5,7 +5,7 @@ const AddTask = () => {
   return (
     <>
       <ReturnBack buttonName="Back to tasks"></ReturnBack>
-      <Form type={'Add task'}></Form>
+      <Form type={'addTask'}></Form>
     </>
   );
 };
