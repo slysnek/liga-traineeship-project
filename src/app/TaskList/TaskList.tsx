@@ -1,3 +1,4 @@
+import React from 'react';
 import { ITaskListProps } from 'app/TaskList/TaskList.types';
 import Task from 'app/Task/Task';
 import styles from 'app/TaskList/TaskList.module.css';
@@ -27,4 +28,4 @@ const TaskList: React.FC<ITaskListProps> = ({ tasks }) => {
   );
 };
 
-export default TaskList;
+export default React.memo(TaskList);

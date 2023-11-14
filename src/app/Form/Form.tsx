@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
+
 import { IForm } from './Form.types';
 import styles from 'app/Form/Form.module.css';
 import { addNewTaskQuery, changeTaskQuery, resetAddAndEditTaskStatus } from 'src/store/tasksSlice';
@@ -115,4 +116,4 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
   );
 };
 
-export default Form;
+export default React.memo(Form);
