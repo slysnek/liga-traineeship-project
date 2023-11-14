@@ -29,15 +29,10 @@ export default class Fetcher {
     } catch (error) {
       if (axios.isCancel(error)) {
         return [];
+      } else {
+        throw new Error();
       }
     }
-
-    const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
-      timeout: 5000,
-      params: filters,
-      signal: this.abortController.signal,
-    });
-    return response.data;
   }
 
   async addData(url: string, formData: AddTaskQuery): Promise<IPostTaskResponse> {
