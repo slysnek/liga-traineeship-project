@@ -3,7 +3,15 @@ import { GetFilteredTasksQuery, IGetTaskResponse, IGetTasksResponse } from 'api/
 export type TasksInitialState = {
   tasks: IGetTasksResponse;
   currentTask?: IGetTaskResponse;
-  status?: string;
+  status: Statuses;
   error?: string;
   filters: GetFilteredTasksQuery;
+};
+
+export type Statuses = {
+  getTasksStatus?: string;
+  getTaskByIdStatus?: string;
+  deleteTaskStatus?: string;
+  editTaskStatus?: string;
+  addTaskStatus?: string;
 };

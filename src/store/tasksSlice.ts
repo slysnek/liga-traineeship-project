@@ -80,7 +80,13 @@ export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, ChangeTaskQu
 
 const initialState: TasksInitialState = {
   tasks: [],
-  status: undefined,
+  status: {
+    addTaskStatus: undefined,
+    getTaskByIdStatus: undefined,
+    getTasksStatus: undefined,
+    editTaskStatus: undefined,
+    deleteTaskStatus: undefined,
+  },
   error: undefined,
   currentTask: undefined,
   filters: {
@@ -128,33 +134,41 @@ const tasksSlice = createSlice({
   },
   extraReducers: {
     [String(getTasksQuery.pending)]: (state) => {
-      state.status = 'loading';
+      state.status.getTasksStatus = 'loading';
       state.error = undefined;
     },
     [String(getTasksQuery.fulfilled)]: (state, action: PayloadAction<IGetTasksResponse>) => {
-      state.status = 'resolved';
+      state.status.getTasksStatus = 'resolved';
       state.error = undefined;
       state.tasks = action.payload;
     },
     [String(getTasksQuery.rejected)]: (state, action: PayloadAction<string>) => {
-      state.status = 'rejected';
+      state.status.getTasksStatus = 'rejected';
       state.error = action.payload;
     },
     [String(getTaskByIdQuery.pending)]: (state) => {
-      state.status = 'loading';
+      state.status.getTaskByIdStatus = 'loading';
       state.error = undefined;
     },
     [String(getTaskByIdQuery.fulfilled)]: (state, action: PayloadAction<IGetTaskResponse>) => {
-      state.status = 'resolved';
+      state.status.getTaskByIdStatus = 'resolved';
       state.error = undefined;
       state.currentTask = action.payload;
     },
     [String(getTaskByIdQuery.rejected)]: (state, action: PayloadAction<string>) => {
-      state.status = 'rejected';
+      state.status.getTaskByIdStatus = 'rejected';
+      state.error = action.payload;
+    },
+    [String(removeTaskQuery.fulfilled)]: (state, action: PayloadAction<string>) => {
+      state.status.deleteTaskStatus = 'resolved';
+      state.error = action.payload;
+    },
+    [String(removeTaskQuery.pending)]: (state, action: PayloadAction<string>) => {
+      state.status.deleteTaskStatus = 'loading';
       state.error = action.payload;
     },
     [String(removeTaskQuery.rejected)]: (state, action: PayloadAction<string>) => {
-      state.status = 'rejected';
+      state.status.deleteTaskStatus = 'rejected';
       state.error = action.payload;
     },
   },
