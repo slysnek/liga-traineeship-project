@@ -43,7 +43,7 @@ export default class Fetcher {
         },
       });
       return response.data;
-    } catch (error) {
+    } catch {
       throw new Error();
     }
   }
@@ -66,7 +66,7 @@ export default class Fetcher {
         }
       );
       return response.data;
-    } catch (error) {
+    } catch {
       throw new Error();
     }
   }
@@ -78,7 +78,7 @@ export default class Fetcher {
       if (!(response.status === 200)) {
         throw new Error("Task doesn't exist");
       }
-    } catch (error) {
+    } catch {
       throw new Error();
     }
   }
@@ -88,7 +88,7 @@ export default class Fetcher {
       const resource = `${url}/${id}`;
       const response: AxiosResponse<IGetTaskResponse> = await axios.get(resource);
       return response.data;
-    } catch (error) {
+    } catch {
       throw new Error();
     }
   }
