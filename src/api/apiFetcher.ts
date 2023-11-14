@@ -10,10 +10,32 @@ import {
 } from './apiTypes';
 
 export default class Fetcher {
+  private abortController: AbortController | null = null;
+
   async getData(url: string, filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+    if (this.abortController) {
+      this.abortController.abort();
+    }
+
+    this.abortController = new AbortController();
+
+    try {
+      const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
+        timeout: 5000,
+        params: filters,
+        signal: this.abortController.signal,
+      });
+      return response.data;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return [];
+      }
+    }
+
     const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
       timeout: 5000,
       params: filters,
+      signal: this.abortController.signal,
     });
     return response.data;
   }
@@ -27,7 +49,7 @@ export default class Fetcher {
       });
       return response.data;
     } catch (error) {
-      throw new Error((error as Error).message);
+      throw new Error();
     }
   }
 
@@ -50,7 +72,7 @@ export default class Fetcher {
       );
       return response.data;
     } catch (error) {
-      throw new Error((error as Error).message);
+      throw new Error();
     }
   }
 
@@ -62,7 +84,7 @@ export default class Fetcher {
         throw new Error("Task doesn't exist");
       }
     } catch (error) {
-      throw new Error((error as Error).message);
+      throw new Error();
     }
   }
 
@@ -72,7 +94,7 @@ export default class Fetcher {
       const response: AxiosResponse<IGetTaskResponse> = await axios.get(resource);
       return response.data;
     } catch (error) {
-      throw new Error((error as Error).message);
+      throw new Error();
     }
   }
 }
