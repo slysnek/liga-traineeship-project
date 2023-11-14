@@ -4,11 +4,10 @@ import { PopUpProps } from './PopUp.types';
 
 const PopUp: React.FC<PopUpProps> = ({ message, error }) => {
   const [visible, setVisible] = useState(true);
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setVisible(false);
-    }, 3000);
+    }, 1300);
 
     return () => {
       clearTimeout(timeoutId);
