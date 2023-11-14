@@ -113,7 +113,7 @@ const tasksSlice = createSlice({
       });
     },
     changeFilters(state, action: PayloadAction<GetFilteredTasksQuery>) {
-      state.filters = action.payload;
+      state.filters = { ...state.filters, ...action.payload };
     },
     editTask(state, action: PayloadAction<IPatchTaskResponse>) {
       const taskID = state.tasks.findIndex((task) => task.id === action.payload.id);
