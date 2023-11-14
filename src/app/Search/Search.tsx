@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import searchIcon from '../../assets/icons/icon-search.svg';
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './Search.module.css';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
-import { changeFilters, getTasksQuery } from 'src/store/tasksSlice';
+import { changeFilters } from 'src/store/tasksSlice';
+import { searchSchema } from 'utils/searchSchema';
 
 const Search: React.FC = () => {
+  const { control, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      searchValue: '',
+    },
+    resolver: yupResolver(searchSchema),
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const reduxFilters = useAppSelector((state) => state.tasksInStore.filters);
   const dispatch = useAppDispatch();
@@ -21,9 +29,15 @@ const Search: React.FC = () => {
     }
   }, [searchQuery]);
 
-  const handleTyping = (searchValue: string) => {
-    if (searchValue) {
-      searchParams.set('searchQuery', searchValue);
+  useEffect(() => {
+    if (reduxFilters.name_like) {
+      setValue('searchValue', reduxFilters.name_like);
+    }
+  }, [reduxFilters]);
+
+  const handleTyping = (value: { searchValue: string }) => {
+    if (value.searchValue) {
+      searchParams.set('searchQuery', value.searchValue);
     } else {
       searchParams.delete('searchQuery');
     }
@@ -33,14 +47,25 @@ const Search: React.FC = () => {
 
   return (
     <div className={styles['search-wrapper']}>
-      <input
-        onChange={(e) => handleTyping(e.target.value)}
-        placeholder="Task name"
-        value={reduxFilters.name_like || ''}
-        required
-        className={styles['search-window']}
-        type="text"
-      />
+      <form onSubmit={handleSubmit(handleTyping)}>
+        <Controller
+          name="searchValue"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              onChange={(e) => {
+                field.onChange(e);
+                handleTyping({ searchValue: e.target.value });
+              }}
+              placeholder="Task name"
+              className={styles['search-window']}
+              type="text"
+            />
+          )}
+        />
+      </form>
     </div>
   );
 };
