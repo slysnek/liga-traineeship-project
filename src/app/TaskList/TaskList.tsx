@@ -3,18 +3,20 @@ import { ITaskListProps } from './TaskList.types';
 import Task from 'app/Task/Task';
 import { useAppSelector } from 'src/hooks/hooks';
 import { Loader } from 'components/Loader';
+import PopUp from 'components/PopUp/PopUp';
 
 const TaskList: React.FC<ITaskListProps> = ({ tasks }) => {
   const { status, error } = useAppSelector((state) => state.tasksInStore);
   return (
     <>
       <div className={styles.status}>
-        {status === 'loading' && (
+        {status.getTasksStatus === 'loading' && (
           <Loader variant="circle" isLoading={true}>
             <h2>Loading</h2>
           </Loader>
         )}
-        {error && <h2>An error occured: {error}</h2>}
+        {status.getTasksStatus === 'resolved' && <PopUp error={false} message="Tasks are loaded."></PopUp>}
+        {error && <PopUp error={true} message={error}></PopUp>}
       </div>
       <ul className={styles.tasklist}>
         {tasks.map((task) => {
