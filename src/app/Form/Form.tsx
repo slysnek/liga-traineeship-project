@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import styles from './Form.module.css';
 import { IForm } from './Form.types';
-import { addNewTaskQuery, changeTaskQuery } from 'src/store/tasksSlice';
+import { addNewTaskQuery, changeTaskQuery, resetAddAndEditTaskStatus } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import { AddTaskQuery, ChangeTaskQuery } from 'api/apiTypes';
 import { validationSchema } from 'utils/validationSchema';
@@ -37,6 +37,10 @@ const Form: React.FC<IForm> = ({ type, taskId }) => {
   }, [type, taskToEdit]);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetAddAndEditTaskStatus());
+  }, [dispatch]);
 
   const onSubmit = (data: AddTaskQuery | ChangeTaskQuery) => {
     if (type === 'addTask') {

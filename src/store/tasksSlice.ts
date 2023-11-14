@@ -131,8 +131,16 @@ const tasksSlice = createSlice({
     deleteTask(state, action: PayloadAction<number>) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    resetAddAndEditTaskStatus(state) {
+      state.status.addTaskStatus = undefined;
+      state.status.editTaskStatus = undefined;
+    },
+    resetdeleteTaskStatus(state) {
+      state.status.deleteTaskStatus = undefined;
+    },
   },
   extraReducers: {
+    //get
     [String(getTasksQuery.pending)]: (state) => {
       state.status.getTasksStatus = 'loading';
       state.error = undefined;
@@ -146,6 +154,7 @@ const tasksSlice = createSlice({
       state.status.getTasksStatus = 'rejected';
       state.error = action.payload;
     },
+    //get by id
     [String(getTaskByIdQuery.pending)]: (state) => {
       state.status.getTaskByIdStatus = 'loading';
       state.error = undefined;
@@ -159,21 +168,56 @@ const tasksSlice = createSlice({
       state.status.getTaskByIdStatus = 'rejected';
       state.error = action.payload;
     },
-    [String(removeTaskQuery.fulfilled)]: (state, action: PayloadAction<string>) => {
-      state.status.deleteTaskStatus = 'resolved';
-      state.error = action.payload;
-    },
-    [String(removeTaskQuery.pending)]: (state, action: PayloadAction<string>) => {
+    //delete
+    [String(removeTaskQuery.pending)]: (state) => {
       state.status.deleteTaskStatus = 'loading';
-      state.error = action.payload;
+      state.error = undefined;
+    },
+    [String(removeTaskQuery.fulfilled)]: (state) => {
+      state.status.deleteTaskStatus = 'resolved';
+      state.error = undefined;
     },
     [String(removeTaskQuery.rejected)]: (state, action: PayloadAction<string>) => {
       state.status.deleteTaskStatus = 'rejected';
       state.error = action.payload;
     },
+    //edit
+    [String(changeTaskQuery.pending)]: (state) => {
+      state.status.editTaskStatus = 'loading';
+      state.error = undefined;
+    },
+    [String(changeTaskQuery.fulfilled)]: (state) => {
+      state.status.editTaskStatus = 'resolved';
+      state.error = undefined;
+    },
+    [String(changeTaskQuery.rejected)]: (state, action: PayloadAction<string>) => {
+      state.status.editTaskStatus = 'rejected';
+      state.error = action.payload;
+    },
+    //add
+    [String(addNewTaskQuery.pending)]: (state) => {
+      state.status.addTaskStatus = 'loading';
+      state.error = undefined;
+    },
+    [String(addNewTaskQuery.fulfilled)]: (state) => {
+      state.status.addTaskStatus = 'resolved';
+      state.error = undefined;
+    },
+    [String(addNewTaskQuery.rejected)]: (state, action: PayloadAction<string>) => {
+      state.status.addTaskStatus = 'rejected';
+      state.error = action.payload;
+    },
   },
 });
 
-export const { addTask, deleteTask, editTask, changeFilters, searchTask } = tasksSlice.actions;
+export const {
+  addTask,
+  resetdeleteTaskStatus,
+  resetAddAndEditTaskStatus,
+  deleteTask,
+  editTask,
+  changeFilters,
+  searchTask,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

@@ -6,10 +6,12 @@ import Filters from 'app/FIlters/Filters';
 import Pagination from 'app/Pagination/Pagination';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
 import Search from 'app/Search/Search';
-import { getTasksQuery } from 'src/store/tasksSlice';
+import { getTasksQuery, resetdeleteTaskStatus } from 'src/store/tasksSlice';
+import PopUp from 'components/PopUp/PopUp';
 
 const ShowTasks = () => {
   const dispatch = useAppDispatch();
+  const { status, error } = useAppSelector((state) => state.tasksInStore);
   const tasks = useAppSelector((state) => state.tasksInStore.tasks);
   const filters = useAppSelector((state) => state.tasksInStore.filters);
 
@@ -21,6 +23,10 @@ const ShowTasks = () => {
     }
   }, [dispatch, filters]);
 
+  useEffect(() => {
+    dispatch(resetdeleteTaskStatus());
+  }, [dispatch]);
+
   return (
     <>
       <div className={styles.options}>
@@ -28,6 +34,8 @@ const ShowTasks = () => {
         <Search />
         <Filters />
       </div>
+      {status.deleteTaskStatus === 'resolved' && <PopUp error={false} message="Task is deleted."></PopUp>}
+      {error && <PopUp error={true} message={error}></PopUp>}
       <Pagination list={TaskList} dataToMap={tasks}></Pagination>
     </>
   );
