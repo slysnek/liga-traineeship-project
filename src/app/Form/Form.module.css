@@ -1,0 +1,60 @@
+@import 'src/index.css';
+
+.form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  gap: 8px;
+  border: 1px solid var(--font-color2);
+  border-radius: 16px;
+  padding: 16px;
+  background-color: var(--bg-color2);
+  color: var(--font-color);
+  box-shadow: 0px 4px 8px black;
+}
+
+.form-input{
+  width: 100%;
+  border-radius: 8px;
+  padding: 6px;
+  border: 1px solid var(--font-color2);
+}
+
+.form-textarea{
+  width: 100%;
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid var(--font-color2);
+}
+
+.form button{
+  border-radius: 16px;
+  border: 2px solid var(--font-color2);
+  padding: 8px;
+  background-color: var(--button-color);
+  color: var(--font-color2);
+  font-weight: bold;
+}
+
+.form button:hover{
+  border: 2px solid var(--font-color)
+}
+
+.error{
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--status-error);
+}
+
+.checkbox{
+  text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  .form{
+    width: 300px;
+  }
+}
