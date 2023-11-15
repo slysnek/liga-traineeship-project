@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoaderProps } from './Loader.types';
+import { LoaderProps } from 'components/Loader/Loader.types';
 
 export function Loader({ isLoading, children, variant = 'circle' }: LoaderProps) {
   const loaderClass = variant === 'dot' ? 'spinner-grow spinner-grow-sm' : 'spinner-border text-primary';
