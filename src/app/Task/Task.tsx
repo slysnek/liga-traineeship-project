@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from 'app/Task/Task.module.css';
-import { ITaskType } from 'app/Task/Task.types';
+import { ITaskProps } from 'app/Task/Task.types';
 import pencilIcon from 'assets/icons/icon-pencil.svg';
 import crossIcon from 'assets/icons/icon-cross.svg';
 import checkmarkIcon from 'assets/icons/icon-checkmark.svg';
@@ -10,7 +10,7 @@ import { removeTaskQuery } from 'src/store/tasksSlice';
 import { useAppDispatch } from 'src/hooks/hooks';
 import { convertToBoolean } from 'utils/convertToBoolean';
 
-const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
+const Task: React.FC<ITaskProps> = (taskData: ITaskProps) => {
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
@@ -27,7 +27,7 @@ const Task: React.FC<ITaskType> = (taskData: ITaskType) => {
         </Link>
         <img onClick={handleDelete} className={styles.icon} src={deleteIcon} alt="delete icon" />
       </div>
-      <p>{taskData.info}</p>
+      <p className={styles.info}>{taskData.info}</p>
       <label className={styles.inputCheck}>
         {convertToBoolean(taskData.isCompleted) ? (
           <>

@@ -32,24 +32,20 @@
   border: 3px solid var(--font-color);
 }
 
-/* width */
 .task::-webkit-scrollbar {
   width: 8px;
 }
 
-/* Track */
 .task::-webkit-scrollbar-track {
   background: none;
   margin: 12px;
 }
 
-/* Handle */
 .task::-webkit-scrollbar-thumb {
   background: var(--font-color);
   border-radius: 16px;
 }
 
-/* Handle on hover */
 .task::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
@@ -58,6 +54,10 @@
   text-align: center;
   padding-top: 4px;
   border-bottom: 2px solid var(--font-color);
+  word-break: break-word;
+}
+
+.info{
   word-break: break-word;
 }
 
