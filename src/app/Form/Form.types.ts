@@ -1,6 +1,6 @@
 export type FormButton = 'addTask' | 'editTask';
 
-export interface IForm {
+export interface IFormProps {
   type: FormButton;
   taskId?: number;
 }

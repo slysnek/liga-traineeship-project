@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 
-import { IForm } from './Form.types';
+import { IFormProps } from 'app/Form/Form.types';
 import styles from 'app/Form/Form.module.css';
 import { addNewTaskQuery, changeTaskQuery, resetAddAndEditTaskStatus } from 'src/store/tasksSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/hooks';
@@ -10,7 +10,7 @@ import { AddTaskQuery, ChangeTaskQuery } from 'api/apiTypes';
 import { validationSchema } from 'utils/validationSchema';
 import { convertToBoolean } from 'utils/convertToBoolean';
 
-const Form: React.FC<IForm> = ({ type, taskId }) => {
+const Form: React.FC<IFormProps> = ({ type, taskId }) => {
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: '',

@@ -7,15 +7,15 @@ import {
   AddTaskQuery,
   ChangeTaskQuery,
   GetFilteredTasksQuery,
-  IGetTaskResponse,
-  IGetTasksResponse,
-  IPatchTaskResponse,
-  IPostTaskResponse,
+  GetTaskResponse,
+  GetTasksResponse,
+  PatchTaskResponse,
+  PostTaskResponse,
 } from 'api/apiTypes';
 
 const controller = new Controller(BASE_URL, new Fetcher());
 
-export const getTasksQuery = createAsyncThunk<IGetTasksResponse, GetFilteredTasksQuery, { rejectValue: string }>(
+export const getTasksQuery = createAsyncThunk<GetTasksResponse, GetFilteredTasksQuery, { rejectValue: string }>(
   'tasksSlice/getTasksQuery',
   async function (filters, { rejectWithValue }) {
     try {
@@ -27,7 +27,7 @@ export const getTasksQuery = createAsyncThunk<IGetTasksResponse, GetFilteredTask
   }
 );
 
-export const getTaskByIdQuery = createAsyncThunk<IGetTaskResponse, number, { rejectValue: string }>(
+export const getTaskByIdQuery = createAsyncThunk<GetTaskResponse, number, { rejectValue: string }>(
   'tasksSlice/getTaskByIdQuery',
   async function (id, { rejectWithValue }) {
     try {
@@ -52,7 +52,7 @@ export const removeTaskQuery = createAsyncThunk<void, number, { rejectValue: str
   }
 );
 
-export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, AddTaskQuery, { rejectValue: string }>(
+export const addNewTaskQuery = createAsyncThunk<PostTaskResponse, AddTaskQuery, { rejectValue: string }>(
   'tasksSlice/addNewTaskQuery',
   async function (data, { rejectWithValue, dispatch }) {
     try {
@@ -65,7 +65,7 @@ export const addNewTaskQuery = createAsyncThunk<IPostTaskResponse, AddTaskQuery,
   }
 );
 
-export const changeTaskQuery = createAsyncThunk<IPatchTaskResponse, ChangeTaskQuery, { rejectValue: string }>(
+export const changeTaskQuery = createAsyncThunk<PatchTaskResponse, ChangeTaskQuery, { rejectValue: string }>(
   'tasksSlice/changeTaskQuery',
   async function (data, { rejectWithValue, dispatch }) {
     try {
@@ -100,7 +100,7 @@ const tasksSlice = createSlice({
   name: 'tasksSlice',
   initialState: initialState,
   reducers: {
-    addTask(state, action: PayloadAction<IPostTaskResponse>) {
+    addTask(state, action: PayloadAction<PostTaskResponse>) {
       state.tasks.push({
         name: action.payload.name,
         info: action.payload.info,
@@ -111,7 +111,7 @@ const tasksSlice = createSlice({
     changeFilters(state, action: PayloadAction<GetFilteredTasksQuery>) {
       state.filters = { ...state.filters, ...action.payload };
     },
-    editTask(state, action: PayloadAction<IPatchTaskResponse>) {
+    editTask(state, action: PayloadAction<PatchTaskResponse>) {
       const taskID = state.tasks.findIndex((task) => task.id === action.payload.id);
       state.tasks[taskID].name = action.payload.name;
       state.tasks[taskID].info = action.payload.info;
@@ -135,7 +135,7 @@ const tasksSlice = createSlice({
       state.status.getTasksStatus = 'loading';
       state.error = undefined;
     },
-    [String(getTasksQuery.fulfilled)]: (state, action: PayloadAction<IGetTasksResponse>) => {
+    [String(getTasksQuery.fulfilled)]: (state, action: PayloadAction<GetTasksResponse>) => {
       state.status.getTasksStatus = 'resolved';
       state.error = undefined;
       state.tasks = action.payload;
@@ -149,7 +149,7 @@ const tasksSlice = createSlice({
       state.status.getTaskByIdStatus = 'loading';
       state.error = undefined;
     },
-    [String(getTaskByIdQuery.fulfilled)]: (state, action: PayloadAction<IGetTaskResponse>) => {
+    [String(getTaskByIdQuery.fulfilled)]: (state, action: PayloadAction<GetTaskResponse>) => {
       state.status.getTaskByIdStatus = 'resolved';
       state.error = undefined;
       state.currentTask = action.payload;

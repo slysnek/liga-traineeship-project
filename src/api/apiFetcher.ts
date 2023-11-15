@@ -3,16 +3,16 @@ import {
   AddTaskQuery,
   ChangeTaskQuery,
   GetFilteredTasksQuery,
-  IGetTaskResponse,
-  IGetTasksResponse,
-  IPatchTaskResponse,
-  IPostTaskResponse,
+  GetTaskResponse,
+  GetTasksResponse,
+  PatchTaskResponse,
+  PostTaskResponse,
 } from 'api/apiTypes';
 
 export default class Fetcher {
   private abortController: AbortController | null = null;
 
-  async getData(url: string, filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+  async getData(url: string, filters: GetFilteredTasksQuery): Promise<GetTasksResponse> {
     if (this.abortController) {
       this.abortController.abort();
     }
@@ -20,7 +20,7 @@ export default class Fetcher {
     this.abortController = new AbortController();
 
     try {
-      const response: AxiosResponse<IGetTasksResponse> = await axios.get(url, {
+      const response: AxiosResponse<GetTasksResponse> = await axios.get(url, {
         timeout: 5000,
         params: filters,
         signal: this.abortController.signal,
@@ -35,9 +35,9 @@ export default class Fetcher {
     }
   }
 
-  async addData(url: string, formData: AddTaskQuery): Promise<IPostTaskResponse> {
+  async addData(url: string, formData: AddTaskQuery): Promise<PostTaskResponse> {
     try {
-      const response: AxiosResponse<IPostTaskResponse> = await axios.post(url, formData, {
+      const response: AxiosResponse<PostTaskResponse> = await axios.post(url, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -48,10 +48,10 @@ export default class Fetcher {
     }
   }
 
-  async changeData(url: string, formData: ChangeTaskQuery): Promise<IPatchTaskResponse> {
+  async changeData(url: string, formData: ChangeTaskQuery): Promise<PatchTaskResponse> {
     try {
       const resource = `${url}/${formData.id}`;
-      const response: AxiosResponse<IPatchTaskResponse> = await axios.patch(
+      const response: AxiosResponse<PatchTaskResponse> = await axios.patch(
         resource,
         {
           name: formData.name,
@@ -83,10 +83,10 @@ export default class Fetcher {
     }
   }
 
-  async getDataById(url: string, id: number): Promise<IGetTaskResponse> {
+  async getDataById(url: string, id: number): Promise<GetTaskResponse> {
     try {
       const resource = `${url}/${id}`;
-      const response: AxiosResponse<IGetTaskResponse> = await axios.get(resource);
+      const response: AxiosResponse<GetTaskResponse> = await axios.get(resource);
       return response.data;
     } catch {
       throw new Error();

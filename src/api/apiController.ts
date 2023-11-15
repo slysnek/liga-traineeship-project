@@ -1,11 +1,11 @@
 import {
   GetFilteredTasksQuery,
-  IGetTasksResponse,
-  IGetTaskResponse,
+  GetTasksResponse,
+  GetTaskResponse,
   AddTaskQuery,
-  IPostTaskResponse,
+  PostTaskResponse,
   ChangeTaskQuery,
-  IPatchTaskResponse,
+  PatchTaskResponse,
 } from 'api/apiTypes';
 import Fetcher from 'api/apiFetcher';
 
@@ -18,19 +18,19 @@ export default class Controller {
     this.dataFetcher = dataFetcher;
   }
 
-  async getData(filters: GetFilteredTasksQuery): Promise<IGetTasksResponse> {
+  async getData(filters: GetFilteredTasksQuery): Promise<GetTasksResponse> {
     const response = await this.dataFetcher.getData(this.url, filters);
     return response;
   }
-  async getDataById(id: number): Promise<IGetTaskResponse> {
+  async getDataById(id: number): Promise<GetTaskResponse> {
     const response = await this.dataFetcher.getDataById(this.url, id);
     return response;
   }
-  async addData(formData: AddTaskQuery): Promise<IPostTaskResponse> {
-    const response: IPostTaskResponse = await this.dataFetcher.addData(this.url, formData);
+  async addData(formData: AddTaskQuery): Promise<PostTaskResponse> {
+    const response: PostTaskResponse = await this.dataFetcher.addData(this.url, formData);
     return response;
   }
-  async changeData(formData: ChangeTaskQuery): Promise<IPatchTaskResponse> {
+  async changeData(formData: ChangeTaskQuery): Promise<PatchTaskResponse> {
     const response = await this.dataFetcher.changeData(this.url, formData);
     return response;
   }

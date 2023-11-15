@@ -1,5 +1,5 @@
-import { ITaskType } from 'app/Task/Task.types';
+import { ITaskProps } from 'app/Task/Task.types';
 
 export interface ITaskListProps {
-  tasks: ITaskType[];
+  tasks: ITaskProps[];
 }

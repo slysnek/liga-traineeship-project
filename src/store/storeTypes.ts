@@ -1,14 +1,14 @@
-import { GetFilteredTasksQuery, IGetTaskResponse, IGetTasksResponse } from 'api/apiTypes';
+import { GetFilteredTasksQuery, GetTaskResponse, GetTasksResponse } from 'api/apiTypes';
 
 export type TasksInitialState = {
-  tasks: IGetTasksResponse;
-  currentTask?: IGetTaskResponse;
-  status: Statuses;
+  tasks: GetTasksResponse;
+  currentTask?: GetTaskResponse;
+  status: QueryStatuses;
   error?: string;
   filters: GetFilteredTasksQuery;
 };
 
-export type Statuses = {
+export type QueryStatuses = {
   getTasksStatus?: string;
   getTaskByIdStatus?: string;
   deleteTaskStatus?: string;

@@ -14,9 +14,9 @@ export type GetFilteredTasksQuery = {
   isCompleted?: boolean;
   name_like?: string;
 };
-export type IGetTasksResponse = paths['/tasks']['get']['responses']['200']['content']['application/json'];
-export type IPostTaskResponse = paths['/tasks']['post']['responses']['200']['content']['application/json'];
-export type IGetTaskResponse = paths['/tasks/{taskId}']['get']['responses']['200']['content']['application/json'];
-export type IPatchTaskResponse = paths['/tasks/{taskId}']['patch']['responses']['200']['content']['application/json'];
-export type IDeleteTaskResponse =
+export type GetTasksResponse = paths['/tasks']['get']['responses']['200']['content']['application/json'];
+export type PostTaskResponse = paths['/tasks']['post']['responses']['200']['content']['application/json'];
+export type GetTaskResponse = paths['/tasks/{taskId}']['get']['responses']['200']['content']['application/json'];
+export type PatchTaskResponse = paths['/tasks/{taskId}']['patch']['responses']['200']['content']['application/json'];
+export type DeleteTaskResponse =
   paths['/tasks/{taskId}']['delete']['responses']['200']['content']['application/json; charset=utf-8'];

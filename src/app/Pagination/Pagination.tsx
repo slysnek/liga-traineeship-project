@@ -4,12 +4,12 @@ import styles from 'app/Pagination/Pagination.module.css';
 import arrowLeft from 'assets/icons/icon-arrow-left.svg';
 import arrowRight from 'assets/icons/icon-arrow-right.svg';
 import { PAGE_SIZE } from 'constants/constants';
-import { ITaskType } from 'app/Task/Task.types';
+import { ITaskProps } from 'app/Task/Task.types';
 
 const Pagination: React.FC<IPaginationProps> = ({ dataToMap, list: TaskList }) => {
   const pageSize = PAGE_SIZE;
   const [currentPage, setCurrentPage] = useState(1);
-  const [tasksForPage, setTasksForPage] = useState<ITaskType[]>([]);
+  const [tasksForPage, setTasksForPage] = useState<ITaskProps[]>([]);
   const totalPages = Math.ceil(dataToMap.length / pageSize);
 
   useEffect(() => {
