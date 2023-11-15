@@ -102,20 +102,10 @@ const tasksSlice = createSlice({
   reducers: {
     addTask(state, action: PayloadAction<IPostTaskResponse>) {
       state.tasks.push({
-        name: action.payload.name?.toString(),
-        info: action.payload.info?.toString(),
+        name: action.payload.name,
+        info: action.payload.info,
         isCompleted: action.payload.isCompleted,
         isImportant: action.payload.isImportant,
-      });
-    },
-    searchTask(state, action: PayloadAction<string>) {
-      state.tasks = state.tasks.filter((task) => {
-        if (task.name) {
-          return task.name.toString().toLowerCase().includes(action.payload.toLowerCase());
-        }
-        if (task.info) {
-          return task.info.toString().toLowerCase().includes(action.payload.toLowerCase());
-        }
       });
     },
     changeFilters(state, action: PayloadAction<GetFilteredTasksQuery>) {
@@ -210,14 +200,7 @@ const tasksSlice = createSlice({
   },
 });
 
-export const {
-  addTask,
-  resetdeleteTaskStatus,
-  resetAddAndEditTaskStatus,
-  deleteTask,
-  editTask,
-  changeFilters,
-  searchTask,
-} = tasksSlice.actions;
+export const { addTask, resetdeleteTaskStatus, resetAddAndEditTaskStatus, deleteTask, editTask, changeFilters } =
+  tasksSlice.actions;
 
 export default tasksSlice.reducer;
