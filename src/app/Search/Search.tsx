@@ -32,6 +32,8 @@ const Search: React.FC = () => {
   useEffect(() => {
     if (reduxFilters.name_like) {
       setValue('searchValue', reduxFilters.name_like);
+    } else {
+      setValue('searchValue', '');
     }
   }, [reduxFilters]);
 
