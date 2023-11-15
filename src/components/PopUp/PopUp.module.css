@@ -1,0 +1,24 @@
+@import 'src/index.css';
+
+.popUp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  width: 240px;
+  height: 100px;
+  background-color: var(--green-button-color);
+  color: var(--font-color);
+  text-align: center;
+  border: 1px solid var(--font-color2);
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 2;
+}
+
+.error{
+  background-color: var(--status-error);
+  color: var(--font-color);
+}

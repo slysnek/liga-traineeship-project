@@ -1,0 +1,23 @@
+:root{
+  --bg-color: #A9D6E5;
+  --bg-color2: #19747E;
+  --font-color: rgb(226, 226, 226);
+  --font-color2: rgb(33, 37, 41);
+  --button-color:  #D1E8E2;
+  --red-button-color: #a11f1f;
+  --green-button-color: #20a32b;
+  --important-text: rgb(247, 238, 69);
+  --important-border: #b32020;
+  --status-error: #8d1b1b;
+}
+
+body{
+  background-color: var(--bg-color);
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--font-color2);
+}
+

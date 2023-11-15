@@ -1,0 +1,14 @@
+.options{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 16px;
+}
+
+@media screen and (max-width: 1000px) {
+  .options{
+   flex-direction: column;
+   gap: 16px;
+  }
+}

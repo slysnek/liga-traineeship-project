@@ -104,20 +104,10 @@ module.exports = {
       },
       {
         test: svgSpriteRegex,
+        type: 'asset',
         use: [
           {
-            loader: 'svg-sprite-loader',
-            options: {
-              extract: true,
-              publicPath: `./assets/icons/`,
-            },
-          },
-          'svg-transform-loader',
-          {
             loader: 'svgo-loader',
-            options: {
-              configFile: svgo,
-            },
           },
         ],
       },
@@ -169,6 +159,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
+      title: 'Todo App',
+      favicon: `./public/notebook.ico`,
       template: `${src}/index.html`,
       ...(isProduction
         ? {

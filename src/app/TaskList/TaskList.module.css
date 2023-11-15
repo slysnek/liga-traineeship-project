@@ -1,0 +1,24 @@
+@import 'src/index.css';
+
+.tasklist{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-items: center;
+  gap: 24px;
+  padding: 16px;
+}
+.tasklist li{
+  list-style-type: none;
+}
+
+.status{
+  margin: 1rem auto;
+  text-align: center;
+  color: var(--status-error);
+}
+
+@media screen and (max-width: 400px) {
+  .tasklist{
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}

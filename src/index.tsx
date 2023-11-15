@@ -1,7 +1,12 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
+import 'src/index.css';
+import { Provider } from 'react-redux';
+import { WrappedApp } from 'app/App';
+import { store } from 'src/store/store';
 
-const container = document.getElementById('root');
-const root = createRoot(container as HTMLElement);
-
-root.render(<h1>todo app</h1>);
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <Provider store={store}>
+    <WrappedApp />
+  </Provider>
+);

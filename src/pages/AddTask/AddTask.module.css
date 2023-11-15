@@ -1,0 +1,5 @@
+.status{
+  margin: 1rem auto;
+  text-align: center;
+  color: var(--status-error);
+}
